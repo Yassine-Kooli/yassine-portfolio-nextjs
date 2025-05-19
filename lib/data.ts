@@ -24,14 +24,7 @@ export const links = [
     name: "Experience",
     hash: "#experience",
   },
-  {
-    name: "Blog",
-    hash: "#blog",
-  },
-  {
-    name: "Testimonials",
-    hash: "#testimonials",
-  },
+
   {
     name: "Contact",
     hash: "#contact",
@@ -79,7 +72,13 @@ export const projectsData = [
     description:
       "A full-featured e-commerce platform with product management, user authentication, cart functionality, and payment processing built with Laravel and Livewire.",
     tags: ["Laravel", "Livewire", "Alpine.js", "Tailwind CSS", "MySQL", "Stripe"],
-    imageUrl: "/images/project1.jpg",
+    images: [
+      "/images/project1.jpg",
+      "/images/project1-2.jpg",
+      "/images/project1-3.jpg",
+      "/images/project1-4.jpg",
+      "/images/project1-5.jpg",
+    ],
     link: "https://github.com/yourusername/laravel-ecommerce",
   },
   {
@@ -87,7 +86,13 @@ export const projectsData = [
     description:
       "A comprehensive admin dashboard system built with Laravel Filament, featuring role-based access control, activity logging, and a beautiful UI for managing application data.",
     tags: ["Laravel", "Filament", "Tailwind CSS", "MySQL", "TALL Stack"],
-    imageUrl: "/images/project2.jpg",
+    images: [
+      "/images/project2.jpg",
+      "/images/project2-2.jpg",
+      "/images/project2-3.jpg",
+      "/images/project2-4.jpg",
+      "/images/project2-5.jpg",
+    ],
     link: "https://github.com/yourusername/filament-admin",
   },
   {
@@ -95,7 +100,13 @@ export const projectsData = [
     description:
       "A platform for real estate agencies to manage properties, clients, and transactions with a dynamic frontend built using Laravel, Livewire, and Alpine.js.",
     tags: ["Laravel", "Livewire", "Alpine.js", "Tailwind CSS", "MySQL"],
-    imageUrl: "/images/project3.jpg",
+    images: [
+      "/images/project3.jpg",
+      "/images/project3-2.jpg",
+      "/images/project3-3.jpg",
+      "/images/project3-4.jpg",
+      "/images/project3-5.jpg",
+    ],
     link: "https://github.com/yourusername/laravel-real-estate",
   },
 ] as const;

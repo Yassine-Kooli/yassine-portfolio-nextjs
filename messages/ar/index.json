@@ -5,8 +5,6 @@
     "projects": "المشاريع",
     "skills": "المهارات",
     "experience": "الخبرة",
-    "blog": "المدونة",
-    "testimonials": "الشهادات",
     "contact": "اتصل بي"
   },
   "intro": {
@@ -37,14 +35,6 @@
   },
   "experience": {
     "title": "خبرتي"
-  },
-  "blog": {
-    "title": "أحدث المقالات",
-    "readMore": "قراءة المزيد",
-    "viewAll": "عرض جميع المقالات"
-  },
-  "testimonials": {
-    "title": "ما يقوله الناس"
   },
   "contact": {
     "title": "اتصل بي",

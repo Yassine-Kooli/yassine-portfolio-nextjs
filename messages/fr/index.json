@@ -5,8 +5,6 @@
     "projects": "Projets",
     "skills": "Compétences",
     "experience": "Expérience",
-    "blog": "Blog",
-    "testimonials": "Témoignages",
     "contact": "Contact"
   },
   "intro": {
@@ -37,14 +35,6 @@
   },
   "experience": {
     "title": "Mon Expérience"
-  },
-  "blog": {
-    "title": "Derniers Articles",
-    "readMore": "Lire plus",
-    "viewAll": "Voir tous les articles"
-  },
-  "testimonials": {
-    "title": "Ce que Disent les Gens"
   },
   "contact": {
     "title": "Contactez-Moi",
