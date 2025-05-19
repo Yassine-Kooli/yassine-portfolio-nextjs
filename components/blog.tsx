@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import SectionHeading from "./section-heading";
-import { useSectionInView } from "@/lib/hooks";
+import { useInView } from "react-intersection-observer";
 import { blogData } from "@/lib/data";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
@@ -11,7 +11,7 @@ import { format } from "date-fns";
 import { useTranslation } from "@/lib/hooks/useTranslation";
 
 export default function Blog() {
-  const { ref } = useSectionInView("Blog", 0.5);
+  const { ref } = useInView({ threshold: 0.5 });
   const { t } = useTranslation();
 
   return (

@@ -4,12 +4,12 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import SectionHeading from "./section-heading";
-import { useSectionInView } from "@/lib/hooks";
+import { useInView } from "react-intersection-observer";
 import { testimonialData } from "@/lib/data";
 import { useTranslation } from "@/lib/hooks/useTranslation";
 
 export default function Testimonials() {
-  const { ref } = useSectionInView("Testimonials", 0.5);
+  const { ref } = useInView({ threshold: 0.5 });
   const { t } = useTranslation();
 
   return (

@@ -109,6 +109,9 @@ export default function ThreeBackground() {
 
     animate();
 
+    // Store a reference to the container for cleanup
+    const container = containerRef.current;
+
     // Cleanup
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -120,7 +123,6 @@ export default function ThreeBackground() {
       renderer.dispose();
 
       // Remove canvas
-      const container = containerRef.current;
       if (container) {
         while (container.firstChild) {
           container.removeChild(container.firstChild);
