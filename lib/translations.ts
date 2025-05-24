@@ -1,16 +1,14 @@
 import enTranslations from '@/messages/en/index.json';
 import frTranslations from '@/messages/fr/index.json';
-import arTranslations from '@/messages/ar/index.json';
 
 type TranslationKey = string;
 
 const translations = {
   en: enTranslations,
   fr: frTranslations,
-  ar: arTranslations,
 };
 
-export type Language = 'en' | 'fr' | 'ar';
+export type Language = 'en' | 'fr';
 
 /**
  * Get a translation by key and language

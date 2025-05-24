@@ -11,7 +11,7 @@
     "greeting": "Hello, I'm Yassine.",
     "role": "I'm a",
     "title": "Laravel developer",
-    "experience": "5+ years",
+    "experience": "3+ years",
     "description": "of experience. I specialize in building",
     "focus": "modern web applications",
     "with": "with",
@@ -21,14 +21,28 @@
   },
   "about": {
     "title": "About Me",
-    "description": "I'm a passionate Laravel developer with a strong focus on creating efficient, scalable, and user-friendly web applications. With over 5 years of experience in the industry, I've worked on a variety of projects ranging from small business websites to complex enterprise applications.",
+    "description": "I'm a passionate Laravel developer with a strong focus on creating efficient, scalable, and user-friendly web applications. With over 3 years of experience in the industry, I've worked on a variety of projects ranging from small business websites to complex enterprise applications.",
     "background": "My journey in web development began with a solid foundation in computer science, and I've continuously expanded my skills to stay at the forefront of modern web technologies. I'm particularly experienced with Laravel, Livewire, Filament, Alpine.js, and Tailwind CSS.",
     "approach": "I approach each project with a commitment to clean code, performance optimization, and thoughtful user experience design. I believe in building applications that not only meet technical requirements but also deliver real value to users. The TALL stack (Tailwind CSS, Alpine.js, Laravel, Livewire) has become my preferred technology stack for delivering exceptional web experiences."
   },
   "projects": {
-    "title": "My Projects",
+    "title": "What I Build",
     "viewGithub": "View on GitHub",
     "viewDemo": "Live Demo"
+  },
+  "projectCapabilities": {
+    "ecommerce": {
+      "title": "E-commerce Platforms",
+      "description": "Custom-built online stores with features like product catalogs, shopping carts, secure payment gateway integration (Stripe, PayPal), order management, and user accounts."
+    },
+    "adminPanels": {
+      "title": "Admin Panels & Dashboards",
+      "description": "Powerful and intuitive admin interfaces for managing application data, users, and settings. Includes features like role-based access control, data visualization, and activity logging."
+    },
+    "saas": {
+      "title": "SaaS Applications",
+      "description": "Scalable and secure Software-as-a-Service products with features like subscription management, multi-tenancy, user onboarding, and robust back-end infrastructure."
+    }
   },
   "skills": {
     "title": "My Skills"
@@ -46,7 +60,7 @@
     "errorMessage": "Something went wrong. Please try again."
   },
   "footer": {
-    "copyright": "© 2024 Yassine. All rights reserved.",
+    "copyright": " 2024 Yassine. All rights reserved.",
     "builtWith": "Built with Next.js and Tailwind CSS"
   },
   "theme": {

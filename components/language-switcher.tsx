@@ -16,7 +16,6 @@ type LanguageOption = {
 const languages: LanguageOption[] = [
   { code: "en", name: "English", flag: "🇺🇸" },
   { code: "fr", name: "Français", flag: "🇫🇷" },
-  { code: "ar", name: "العربية", flag: "🇲🇦" },
 ];
 
 export default function LanguageSwitcher() {

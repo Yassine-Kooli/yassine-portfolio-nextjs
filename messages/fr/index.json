@@ -11,7 +11,7 @@
     "greeting": "Bonjour, je suis Yassine.",
     "role": "Je suis",
     "title": "développeur Laravel",
-    "experience": "5+ ans",
+    "experience": "3+ ans",
     "description": "d'expérience. Je me spécialise dans la création",
     "focus": "d'applications web modernes",
     "with": "avec",
@@ -26,9 +26,21 @@
     "approach": "J'aborde chaque projet avec un engagement envers le code propre, l'optimisation des performances et la conception réfléchie de l'expérience utilisateur. Je crois en la construction d'applications qui non seulement répondent aux exigences techniques, mais qui apportent également une réelle valeur aux utilisateurs. La stack TALL (Tailwind CSS, Alpine.js, Laravel, Livewire) est devenue ma pile technologique préférée pour offrir des expériences web exceptionnelles."
   },
   "projects": {
-    "title": "Mes Projets",
-    "viewGithub": "Voir sur GitHub",
-    "viewDemo": "Démo en direct"
+    "title": "Ce Que Je Construis"
+  },
+  "projectCapabilities": {
+    "ecommerce": {
+      "title": "Plateformes E-commerce",
+      "description": "Boutiques en ligne sur mesure avec des fonctionnalités telles que catalogues de produits, paniers d'achats, intégration sécurisée de passerelles de paiement (Stripe, PayPal), gestion des commandes et comptes utilisateurs."
+    },
+    "adminPanels": {
+      "title": "Panneaux d'Administration & Tableaux de Bord",
+      "description": "Interfaces d'administration puissantes et intuitives pour gérer les données d'application, les utilisateurs et les paramètres. Inclut des fonctionnalités telles que le contrôle d'accès basé sur les rôles, la visualisation des données et la journalisation des activités."
+    },
+    "saas": {
+      "title": "Applications SaaS",
+      "description": "Produits Software-as-a-Service évolutifs et sécurisés avec des fonctionnalités telles que la gestion des abonnements, la multi-location (multi-tenancy), l'intégration des utilisateurs (onboarding) et une infrastructure back-end robuste."
+    }
   },
   "skills": {
     "title": "Mes Compétences"
@@ -46,7 +58,7 @@
     "errorMessage": "Une erreur s'est produite. Veuillez réessayer."
   },
   "footer": {
-    "copyright": "© 2024 Yassine. Tous droits réservés.",
+    "copyright": " 2024 Yassine. Tous droits réservés.",
     "builtWith": "Construit avec Next.js et Tailwind CSS"
   },
   "theme": {
