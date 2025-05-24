@@ -4,7 +4,7 @@ import React from "react";
 import SectionHeading from "./section-heading";
 import { motion } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
-import { useTranslation } from "@/lib/hooks/useTranslation";
+import { useTranslation } from "@/lib/hooks";
 
 export default function About() {
   const { ref } = useSectionInView("About");

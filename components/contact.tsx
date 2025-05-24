@@ -7,9 +7,11 @@ import { useSectionInView } from "@/lib/hooks";
 import { sendEmail } from "@/actions/sendEmail";
 import SubmitBtn from "./submit-btn";
 import toast from "react-hot-toast";
+import { useTranslation } from "@/lib/hooks";
 
 export default function Contact() {
   const { ref } = useSectionInView("Contact");
+  const { t } = useTranslation();
 
   return (
     <motion.section
@@ -29,27 +31,27 @@ export default function Contact() {
         once: true,
       }}
     >
-      <SectionHeading>Contact me</SectionHeading>
+      <SectionHeading translationKey="contact.title" />
 
       <p className="text-gray-700 -mt-6 dark:text-white/80">
-        Please contact me directly at{" "}
+        {t('contact.description')}{" "}
         <a className="underline" href="mailto:kooli.yassine0@gmail.com">
           kooli.yassine0@gmail.com
         </a>{" "}
-        or through this form.
+        {t('contact.orForm')}.
       </p>
 
       <form
         className="mt-10 flex flex-col dark:text-black"
         action={async (formData) => {
-          const { data, error } = await sendEmail(formData);
+          const { error } = await sendEmail(formData);
 
           if (error) {
-            toast.error(error);
+            toast.error(t('contact.errorMessage'));
             return;
           }
 
-          toast.success("Email sent successfully!");
+          toast.success(t('contact.successMessage'));
         }}
       >
         <input
@@ -58,12 +60,12 @@ export default function Contact() {
           type="email"
           required
           maxLength={500}
-          placeholder="Your email"
+          placeholder={t('contact.emailLabel')}
         />
         <textarea
           className="h-52 my-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
           name="message"
-          placeholder="Your message"
+          placeholder={t('contact.messageLabel')}
           required
           maxLength={5000}
         />

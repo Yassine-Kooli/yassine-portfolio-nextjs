@@ -23,10 +23,13 @@
     "title": "À Propos de Moi",
     "description": "Je suis un développeur Laravel senior spécialisé dans la création d'applications web évolutives de niveau entreprise. Avec plus de 5 ans d'expérience, j'ai conçu et développé des systèmes complexes incluant des plateformes SaaS multi-locataires, des solutions e-commerce et des panneaux d'administration complets servant des milliers d'utilisateurs.",
     "background": "Mon expertise couvre l'ensemble de l'écosystème Laravel, des implémentations avancées de multi-tenancy aux fonctionnalités temps réel avec WebSockets. J'excelle dans la création d'APIs robustes, l'implémentation de logique métier complexe et l'optimisation des performances d'applications. Ma stack technique inclut Laravel Filament pour les interfaces d'administration, Livewire pour les frontends dynamiques, et des pratiques de déploiement modernes avec Docker et les plateformes cloud.",
-    "approach": "J'aborde chaque projet avec un engagement envers le code propre, l'optimisation des performances et la conception réfléchie de l'expérience utilisateur. Je crois en la construction d'applications qui non seulement répondent aux exigences techniques, mais qui apportent également une réelle valeur aux utilisateurs. La stack TALL (Tailwind CSS, Alpine.js, Laravel, Livewire) est devenue ma pile technologique préférée pour offrir des expériences web exceptionnelles."
+    "approach": "J'aborde chaque projet avec une réflexion de niveau entreprise, en me concentrant sur l'architecture évolutive, les meilleures pratiques de sécurité et le code maintenable. Qu'il s'agisse d'implémenter l'isolation multi-locataire, d'intégrer des passerelles de paiement ou de créer des fonctionnalités collaboratives en temps réel, je livre des solutions qui évoluent avec les besoins de votre entreprise. Je suis passionné par l'exploitation de l'écosystème puissant de Laravel pour créer des applications à la fois techniquement excellentes et conviviales."
   },
   "projects": {
-    "title": "Ce Que Je Construis"
+    "title": "Projets en Vedette",
+    "description": "Explorez un portfolio diversifié d'applications Laravel que j'ai construites, des plateformes SaaS multi-locataires aux solutions e-commerce d'entreprise. Chaque projet démontre des techniques Laravel avancées, une architecture évolutive et des pratiques de développement modernes.",
+    "viewGithub": "Voir sur GitHub",
+    "viewDemo": "Démo en Direct"
   },
   "projectCapabilities": {
     "ecommerce": {
@@ -45,11 +48,41 @@
   "skills": {
     "title": "Mes Compétences"
   },
+  "theme": {
+    "light": "Passer en mode clair",
+    "dark": "Passer en mode sombre"
+  },
   "experience": {
-    "title": "Mon Expérience"
+    "title": "Mon Expérience",
+    "education": {
+      "title": "Licence en Business Intelligence",
+      "location": "ISG Sousse, Tunisie",
+      "description": "Diplômé d'une Licence en Business Intelligence, étudiant l'intersection entre les affaires et les technologies de l'information. J'ai acquis une solide base en analyse de données, conception de systèmes et systèmes d'aide à la décision, avec des connaissances théoriques et pratiques en gestion d'entreprise et en informatique.",
+      "date": "2024"
+    },
+    "intern": {
+      "title": "Stagiaire Développeur Web",
+      "location": "Satoripop, Sousse",
+      "description": "J'ai effectué un stage de deux mois axé sur le développement back-end en utilisant PHP, CodeIgniter et Laravel. J'ai contribué à deux projets réels, acquérant une expérience pratique avec les frameworks, la gestion de bases de données et l'intégration d'API tout en collaborant dans un environnement d'équipe.",
+      "date": "Été 2022"
+    },
+    "freelance": {
+      "title": "Développeur Web Freelance",
+      "location": "À distance / Clients locaux",
+      "description": "J'ai travaillé avec divers clients sur des sites web personnalisés et des applications web. J'ai construit des solutions full-stack en utilisant Laravel, Livewire, Alpine.js et Tailwind CSS. J'ai géré toutes les étapes du projet, de la collecte des exigences au déploiement et au support post-lancement, livrant des solutions axées sur les affaires comme des systèmes d'inventaire, des outils de réservation et des tableaux de bord dynamiques.",
+      "date": "2022 - 2024"
+    },
+    "fulltime": {
+      "title": "Développeur Web à Temps Plein",
+      "location": "Satoripop, Sousse",
+      "description": "J'ai rejoint Satoripop à temps plein après l'obtention de mon diplôme, travaillant activement sur des projets Laravel nouveaux et existants. Je développe des fonctionnalités avancées en utilisant Laravel, Filament, Alpine.js et Livewire. J'améliore et maintiens les panneaux d'administration, les outils internes et les plateformes client tout en collaborant dans des équipes Agile et en contribuant aux revues de code.",
+      "date": "Juillet 2024 - Présent"
+    }
   },
   "contact": {
     "title": "Contactez-Moi",
+    "description": "Veuillez me contacter directement à",
+    "orForm": "ou via ce formulaire",
     "nameLabel": "Votre nom",
     "emailLabel": "Votre email",
     "messageLabel": "Votre message",
@@ -58,11 +91,8 @@
     "errorMessage": "Une erreur s'est produite. Veuillez réessayer."
   },
   "footer": {
-    "copyright": " 2024 Yassine. Tous droits réservés.",
-    "builtWith": "Construit avec Next.js et Tailwind CSS"
-  },
-  "theme": {
-    "light": "Mode clair",
-    "dark": "Mode sombre"
+    "copyright": " 2025 Yassine. Tous droits réservés.",
+    "aboutWebsite": "À propos de ce site web :",
+    "builtWith": "construit avec React & Next.js, TypeScript, Tailwind CSS, three.js, Framer Motion, React Email & Resend, hébergement Vercel."
   }
 }

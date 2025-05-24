@@ -26,7 +26,8 @@
     "approach": "I approach each project with enterprise-level thinking, focusing on scalable architecture, security best practices, and maintainable code. Whether it's implementing multi-tenant isolation, integrating payment gateways, or building real-time collaborative features, I deliver solutions that grow with your business needs. I'm passionate about leveraging Laravel's powerful ecosystem to create applications that are both technically excellent and user-friendly."
   },
   "projects": {
-    "title": "What I Build",
+    "title": "Featured Projects",
+    "description": "Explore a diverse portfolio of Laravel applications I've built, from multi-tenant SaaS platforms to enterprise e-commerce solutions. Each project demonstrates advanced Laravel techniques, scalable architecture, and modern development practices.",
     "viewGithub": "View on GitHub",
     "viewDemo": "Live Demo"
   },
@@ -47,11 +48,41 @@
   "skills": {
     "title": "My Skills"
   },
+  "theme": {
+    "light": "Switch to light mode",
+    "dark": "Switch to dark mode"
+  },
   "experience": {
-    "title": "My Experience"
+    "title": "My Experience",
+    "education": {
+      "title": "Bachelor's Degree in Business Intelligence",
+      "location": "ISG Sousse, Tunisia",
+      "description": "Graduated with a Bachelor's degree in Business Intelligence, studying the intersection of business and information technology. Gained strong foundation in data analysis, system design, and decision support systems, with theoretical and practical knowledge in both business management and IT.",
+      "date": "2024"
+    },
+    "intern": {
+      "title": "Web Development Intern",
+      "location": "Satoripop, Sousse",
+      "description": "Completed a two-month internship focused on back-end development using PHP, CodeIgniter, and Laravel. Contributed to two real-world projects, gaining hands-on experience with frameworks, database management, and API integration while collaborating in a team environment.",
+      "date": "Summer 2022"
+    },
+    "freelance": {
+      "title": "Freelance Web Developer",
+      "location": "Remote / Local Clients",
+      "description": "Worked with various clients on custom websites and web applications. Built full-stack solutions using Laravel, Livewire, Alpine.js, and Tailwind CSS. Handled all project stages from requirements gathering to deployment and post-launch support, delivering business-focused solutions like inventory systems, booking tools, and dynamic dashboards.",
+      "date": "2022 - 2024"
+    },
+    "fulltime": {
+      "title": "Full-Time Web Developer",
+      "location": "Satoripop, Sousse",
+      "description": "Joined Satoripop full-time after graduation, actively working on both new and legacy Laravel-based projects. Building advanced features using Laravel, Filament, Alpine.js, and Livewire. Improving and maintaining admin panels, internal tools, and client-facing platforms while collaborating in Agile teams and contributing to code reviews.",
+      "date": "July 2024 - Present"
+    }
   },
   "contact": {
     "title": "Contact Me",
+    "description": "Please contact me directly at",
+    "orForm": "or through this form",
     "nameLabel": "Your name",
     "emailLabel": "Your email",
     "messageLabel": "Your message",
@@ -60,11 +91,8 @@
     "errorMessage": "Something went wrong. Please try again."
   },
   "footer": {
-    "copyright": " 2024 Yassine. All rights reserved.",
-    "builtWith": "Built with Next.js and Tailwind CSS"
-  },
-  "theme": {
-    "light": "Light mode",
-    "dark": "Dark mode"
+    "copyright": " 2025 Yassine. All rights reserved.",
+    "aboutWebsite": "About this website:",
+    "builtWith": "built with React & Next.js, TypeScript, Tailwind CSS, three.js, Framer Motion, React Email & Resend, Vercel hosting."
   }
 }

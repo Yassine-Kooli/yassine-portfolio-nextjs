@@ -5,17 +5,17 @@ import SectionHeading from "./section-heading";
 import { projectsData } from "@/lib/data";
 import Project from "./project";
 import { useSectionInView } from "@/lib/hooks";
+import { useTranslation } from "@/lib/hooks";
 
 export default function Projects() {
   const { ref } = useSectionInView("Projects", 0.5);
+  const { t } = useTranslation();
 
   return (
     <section ref={ref} id="projects" className="scroll-mt-28 mb-28">
-      <SectionHeading>Featured Projects</SectionHeading>
+      <SectionHeading translationKey="projects.title" />
       <p className="text-center text-gray-700 dark:text-white/70 mb-8 max-w-[42rem] mx-auto">
-        Explore a diverse portfolio of Laravel applications I've built, from multi-tenant SaaS platforms
-        to enterprise e-commerce solutions. Each project demonstrates advanced Laravel techniques,
-        scalable architecture, and modern development practices.
+        {t('projects.description')}
       </p>
       <div>
         {projectsData.map((project, index) => (

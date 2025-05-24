@@ -33,36 +33,32 @@ export const links = [
 
 export const experiencesData = [
   {
-    title: "Computer Science Degree",
-    location: "Casablanca, Morocco",
-    description:
-      "I graduated with a Bachelor's degree in Computer Science, focusing on software engineering and web development with a strong foundation in PHP.",
+    titleKey: "experience.education.title",
+    locationKey: "experience.education.location",
+    descriptionKey: "experience.education.description",
     icon: React.createElement(LuGraduationCap),
-    date: "2018",
+    dateKey: "experience.education.date",
   },
   {
-    title: "Junior Laravel Developer",
-    location: "Rabat, Morocco",
-    description:
-      "I started my career as a Laravel developer, building custom web applications and content management systems for various clients using Laravel and MySQL.",
+    titleKey: "experience.intern.title",
+    locationKey: "experience.intern.location",
+    descriptionKey: "experience.intern.description",
     icon: React.createElement(FaCode),
-    date: "2018 - 2020",
+    dateKey: "experience.intern.date",
   },
   {
-    title: "Laravel Developer",
-    location: "Casablanca, Morocco",
-    description:
-      "I advanced to a mid-level Laravel developer role, working with Laravel, Livewire, and Alpine.js to build dynamic web applications with responsive interfaces.",
+    titleKey: "experience.freelance.title",
+    locationKey: "experience.freelance.location",
+    descriptionKey: "experience.freelance.description",
     icon: React.createElement(CgWorkAlt),
-    date: "2020 - 2022",
+    dateKey: "experience.freelance.date",
   },
   {
-    title: "Senior Laravel Developer",
-    location: "Remote",
-    description:
-      "I'm now working as a senior Laravel developer specializing in Livewire, Filament, Alpine.js, and Tailwind CSS. I focus on building scalable, maintainable, and user-friendly web applications.",
+    titleKey: "experience.fulltime.title",
+    locationKey: "experience.fulltime.location",
+    descriptionKey: "experience.fulltime.description",
     icon: React.createElement(FaReact),
-    date: "2022 - present",
+    dateKey: "experience.fulltime.date",
   },
 ] as const;
 
