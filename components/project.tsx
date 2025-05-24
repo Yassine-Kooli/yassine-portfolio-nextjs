@@ -5,7 +5,7 @@ import { projectsData } from "@/lib/data";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import ImageModal from "./image-modal";
 
 type ProjectProps = (typeof projectsData)[number];
@@ -37,7 +37,6 @@ export default function Project({
 
   // Open modal with the current image
   const openModal = (imageSrc: string) => {
-    console.log("Opening modal with image:", imageSrc);
     setModalImageSrc(imageSrc);
     setIsModalOpen(true);
   };

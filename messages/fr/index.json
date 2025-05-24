@@ -10,19 +10,19 @@
   "intro": {
     "greeting": "Bonjour, je suis Yassine.",
     "role": "Je suis",
-    "title": "développeur Laravel",
-    "experience": "3+ ans",
+    "title": "Développeur Laravel Senior",
+    "experience": "5+ ans",
     "description": "d'expérience. Je me spécialise dans la création",
-    "focus": "d'applications web modernes",
+    "focus": "d'applications web d'entreprise",
     "with": "avec",
-    "tech": "Laravel, Livewire, Filament, Alpine.js et Tailwind CSS",
+    "tech": "Laravel, Multi-Tenancy, Filament, Livewire et PHP moderne",
     "contactButton": "Contactez-moi ici",
     "downloadCV": "Télécharger CV"
   },
   "about": {
     "title": "À Propos de Moi",
-    "description": "Je suis un développeur Laravel passionné, axé sur la création d'applications web efficaces, évolutives et conviviales. Avec plus de 5 ans d'expérience dans l'industrie, j'ai travaillé sur une variété de projets allant des sites web pour petites entreprises aux applications complexes d'entreprise.",
-    "background": "Mon parcours en développement web a commencé avec une solide formation en informatique, et j'ai continuellement élargi mes compétences pour rester à l'avant-garde des technologies web modernes. Je suis particulièrement expérimenté avec Laravel, Livewire, Filament, Alpine.js et Tailwind CSS.",
+    "description": "Je suis un développeur Laravel senior spécialisé dans la création d'applications web évolutives de niveau entreprise. Avec plus de 5 ans d'expérience, j'ai conçu et développé des systèmes complexes incluant des plateformes SaaS multi-locataires, des solutions e-commerce et des panneaux d'administration complets servant des milliers d'utilisateurs.",
+    "background": "Mon expertise couvre l'ensemble de l'écosystème Laravel, des implémentations avancées de multi-tenancy aux fonctionnalités temps réel avec WebSockets. J'excelle dans la création d'APIs robustes, l'implémentation de logique métier complexe et l'optimisation des performances d'applications. Ma stack technique inclut Laravel Filament pour les interfaces d'administration, Livewire pour les frontends dynamiques, et des pratiques de déploiement modernes avec Docker et les plateformes cloud.",
     "approach": "J'aborde chaque projet avec un engagement envers le code propre, l'optimisation des performances et la conception réfléchie de l'expérience utilisateur. Je crois en la construction d'applications qui non seulement répondent aux exigences techniques, mais qui apportent également une réelle valeur aux utilisateurs. La stack TALL (Tailwind CSS, Alpine.js, Laravel, Livewire) est devenue ma pile technologique préférée pour offrir des expériences web exceptionnelles."
   },
   "projects": {

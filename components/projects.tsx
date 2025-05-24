@@ -11,7 +11,12 @@ export default function Projects() {
 
   return (
     <section ref={ref} id="projects" className="scroll-mt-28 mb-28">
-      <SectionHeading>My projects</SectionHeading>
+      <SectionHeading>Featured Projects</SectionHeading>
+      <p className="text-center text-gray-700 dark:text-white/70 mb-8 max-w-[42rem] mx-auto">
+        Explore a diverse portfolio of Laravel applications I've built, from multi-tenant SaaS platforms
+        to enterprise e-commerce solutions. Each project demonstrates advanced Laravel techniques,
+        scalable architecture, and modern development practices.
+      </p>
       <div>
         {projectsData.map((project, index) => (
           <React.Fragment key={index}>
