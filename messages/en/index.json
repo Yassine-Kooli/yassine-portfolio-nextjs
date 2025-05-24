@@ -10,24 +10,24 @@
   "intro": {
     "greeting": "Hello, I'm Yassine.",
     "role": "I'm a",
-    "title": "Senior Laravel Developer",
-    "experience": "5+ years",
+    "title": "Junior Laravel Developer",
+    "experience": "2+ years",
     "description": "of experience. I specialize in building",
-    "focus": "enterprise-grade web applications",
+    "focus": "scalable web applications",
     "with": "with",
-    "tech": "Laravel, Multi-Tenancy, Filament, Livewire, and modern PHP",
+    "tech": "Laravel, Filament, Livewire, and modern PHP",
     "contactButton": "Contact me here",
     "downloadCV": "Download CV"
   },
   "about": {
     "title": "About Me",
-    "description": "I'm a senior Laravel developer specializing in building scalable, enterprise-grade web applications. With over 5 years of experience, I've architected and developed complex systems including multi-tenant SaaS platforms, e-commerce solutions, and comprehensive admin panels that serve thousands of users.",
-    "background": "My expertise spans the entire Laravel ecosystem, from advanced multi-tenancy implementations to real-time features with WebSockets. I excel at creating robust APIs, implementing complex business logic, and optimizing application performance. My technical stack includes Laravel Filament for admin interfaces, Livewire for dynamic frontends, and modern deployment practices with Docker and cloud platforms.",
-    "approach": "I approach each project with enterprise-level thinking, focusing on scalable architecture, security best practices, and maintainable code. Whether it's implementing multi-tenant isolation, integrating payment gateways, or building real-time collaborative features, I deliver solutions that grow with your business needs. I'm passionate about leveraging Laravel's powerful ecosystem to create applications that are both technically excellent and user-friendly."
+    "description": "I'm a Junior Laravel developer with 2+ years of experience building scalable web applications. I've worked on various projects including admin panels, inventory systems, and booking tools, gaining hands-on experience with Laravel, Filament, and Livewire while delivering solutions for both enterprise clients and local businesses.",
+    "background": "My technical expertise includes Laravel ecosystem tools like Filament for admin interfaces, Livewire for dynamic frontends, and modern development practices with Git and Agile methodologies. I'm proficient in building REST APIs, working with MySQL databases, and creating responsive interfaces with Tailwind CSS and Alpine.js.",
+    "approach": "I focus on writing clean, maintainable code and following best practices in web development. Whether it's building admin dashboards, implementing business logic, or optimizing application performance, I'm committed to delivering quality solutions. I'm passionate about continuous learning and staying updated with the latest Laravel features and development trends."
   },
   "projects": {
     "title": "Featured Projects",
-    "description": "Explore a diverse portfolio of Laravel applications I've built, from multi-tenant SaaS platforms to enterprise e-commerce solutions. Each project demonstrates advanced Laravel techniques, scalable architecture, and modern development practices.",
+    "description": "Explore a portfolio of Laravel applications I've built, including admin panels, inventory systems, and booking tools. Each project demonstrates Laravel best practices, clean code, and modern development techniques.",
     "viewGithub": "View on GitHub",
     "viewDemo": "Live Demo"
   },
@@ -54,29 +54,35 @@
   },
   "experience": {
     "title": "My Experience",
-    "education": {
-      "title": "Bachelor's Degree in Business Intelligence",
-      "location": "ISG Sousse, Tunisia",
-      "description": "Graduated with a Bachelor's degree in Business Intelligence, studying the intersection of business and information technology. Gained strong foundation in data analysis, system design, and decision support systems, with theoretical and practical knowledge in both business management and IT.",
-      "date": "2024"
-    },
-    "intern": {
-      "title": "Web Development Intern",
+    "currentJob": {
+      "title": "Web Developer",
       "location": "Satoripop, Sousse",
-      "description": "Completed a two-month internship focused on back-end development using PHP, CodeIgniter, and Laravel. Contributed to two real-world projects, gaining hands-on experience with frameworks, database management, and API integration while collaborating in a team environment.",
-      "date": "Summer 2022"
+      "description": "Develop and maintain enterprise-grade web applications using Laravel, Filament, Livewire, and Alpine.js, enhancing performance and scalability. Build internal dashboards in Agile teams, reducing feature delivery time by 20%. Refactor legacy codebases, improving maintainability and test coverage. Collaborate with designers, PMs, and clients to deliver user-focused features.",
+      "date": "August 2024 - Present"
+    },
+    "internship2024": {
+      "title": "Web Developer Intern",
+      "location": "Satoripop, Sousse",
+      "description": "Built a Laravel-based admin panel for a final-year project using Filament PHP, streamlining backend workflows. Mastered company processes, delivering a scalable application under tight deadlines.",
+      "date": "January 2024 - May 2024"
     },
     "freelance": {
       "title": "Freelance Web Developer",
-      "location": "Remote / Local Clients",
-      "description": "Worked with various clients on custom websites and web applications. Built full-stack solutions using Laravel, Livewire, Alpine.js, and Tailwind CSS. Handled all project stages from requirements gathering to deployment and post-launch support, delivering business-focused solutions like inventory systems, booking tools, and dynamic dashboards.",
-      "date": "2022 - 2024"
+      "location": "Ksar Hellal, Tunisia",
+      "description": "Developed and deployed 10+ full-stack Laravel applications, including booking systems, CRMs, and inventory tools, for local businesses. Managed end-to-end project lifecycles, from requirements gathering to QA and support, achieving 100% client satisfaction. Optimized performance using MySQL and REST APIs.",
+      "date": "2020 - 2024"
     },
-    "fulltime": {
-      "title": "Full-Time Web Developer",
+    "firstIntern": {
+      "title": "Web Development Intern",
       "location": "Satoripop, Sousse",
-      "description": "Joined Satoripop full-time after graduation, actively working on both new and legacy Laravel-based projects. Building advanced features using Laravel, Filament, Alpine.js, and Livewire. Improving and maintaining admin panels, internal tools, and client-facing platforms while collaborating in Agile teams and contributing to code reviews.",
-      "date": "July 2024 - Present"
+      "description": "Contributed to two internal PHP projects using Laravel and CodeIgniter, implementing MVC patterns and REST APIs. Streamlined version control with Git, enhancing team collaboration. Improved debugging efficiency, reducing issue resolution time by 15%.",
+      "date": "Summer 2022"
+    },
+    "education": {
+      "title": "Bachelor's in Business Intelligence",
+      "location": "ISG Sousse, Tunisia",
+      "description": "Graduated with honors, focusing on data-driven solutions. Relevant coursework: Data Analytics, Database Systems. Developed strong foundation in data analysis, system design, and decision support systems.",
+      "date": "2020 - 2024"
     }
   },
   "contact": {
