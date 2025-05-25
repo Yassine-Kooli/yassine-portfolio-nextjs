@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { projectsData } from "@/lib/data";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -18,24 +18,10 @@ export default function Project({
   link,
 }: ProjectProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImageSrc, setModalImageSrc] = useState<string>(images[0] || "");
 
-  // Auto-rotate images every 3 seconds (pause when modal is open)
-  useEffect(() => {
-    if (isModalOpen) return;
-
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [images.length, isModalOpen]);
-
-  // Open modal with the current image
+  // Open modal with the image
   const openModal = (imageSrc: string) => {
     setModalImageSrc(imageSrc);
     setIsModalOpen(true);
@@ -58,40 +44,18 @@ export default function Project({
       className="group mb-3 sm:mb-8 last:mb-0"
     >
       <section className="bg-white max-w-[42rem] border border-black/5 rounded-lg overflow-hidden sm:pr-8 relative hover:bg-gray-50 transition sm:group-even:pl-8 dark:text-white dark:bg-white/10 dark:hover:bg-white/20">
-        {/* Mobile image carousel - shown only on small screens */}
+        {/* Mobile image - shown only on small screens */}
         <div
           className="block sm:hidden w-full h-48 relative overflow-hidden cursor-pointer"
-          onClick={() => openModal(images[currentImageIndex])}
+          onClick={() => openModal(images[0])}
         >
-          {images.map((image, index) => (
-            <Image
-              key={index}
-              src={image}
-              alt={`Screenshot ${index + 1} of ${title} project`}
-              fill
-              className={`object-cover transition-opacity duration-500 ${index === currentImageIndex ? "opacity-100" : "opacity-0"
-                }`}
-              quality={85}
-            />
-          ))}
-
-          {/* Image indicators */}
-          <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1 z-10">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent modal from opening when clicking indicators
-                  setCurrentImageIndex(index);
-                }}
-                className={`w-2 h-2 rounded-full transition-all ${index === currentImageIndex
-                  ? "bg-white scale-110"
-                  : "bg-white/50"
-                  }`}
-                aria-label={`View image ${index + 1}`}
-              />
-            ))}
-          </div>
+          <Image
+            src={images[0]}
+            alt={`Screenshot of ${title} project`}
+            fill
+            className="object-cover"
+            quality={85}
+          />
         </div>
 
         <div className="pt-4 pb-7 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] flex flex-col h-full sm:group-even:ml-[18rem] sm:h-[20rem]">
@@ -134,53 +98,18 @@ export default function Project({
           </ul>
         </div>
 
-        {/* Desktop image carousel - hidden on small screens */}
+        {/* Desktop image - hidden on small screens */}
         <div
-          className="absolute hidden sm:block top-8 -right-40 w-[28.25rem] h-[18rem] rounded-t-lg shadow-2xl overflow-hidden cursor-pointer
-          transition
-          group-hover:scale-[1.04]
-          group-hover:-translate-x-3
-          group-hover:translate-y-3
-          group-hover:-rotate-2
-
-          group-even:group-hover:translate-x-3
-          group-even:group-hover:translate-y-3
-          group-even:group-hover:rotate-2
-
-          group-even:right-[initial] group-even:-left-40"
-          onClick={() => openModal(images[currentImageIndex])}
+          className="absolute hidden sm:block top-8 -right-40 w-[28.25rem] h-[18rem] rounded-t-lg shadow-2xl overflow-hidden cursor-pointer group-even:right-[initial] group-even:-left-40"
+          onClick={() => openModal(images[0])}
         >
-
-          {/* Desktop images */}
-          {images.map((image, index) => (
-            <Image
-              key={index}
-              src={image}
-              alt={`Screenshot ${index + 1} of ${title} project`}
-              fill
-              quality={95}
-              className={`object-cover transition-opacity duration-500 ${index === currentImageIndex ? "opacity-100" : "opacity-0"
-                }`}
-            />
-          ))}
-
-          {/* Desktop image indicators */}
-          <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent modal from opening when clicking indicators
-                  setCurrentImageIndex(index);
-                }}
-                className={`w-2.5 h-2.5 rounded-full transition-all ${index === currentImageIndex
-                  ? "bg-white scale-110"
-                  : "bg-white/50"
-                  }`}
-                aria-label={`View image ${index + 1}`}
-              />
-            ))}
-          </div>
+          <Image
+            src={images[0]}
+            alt={`Screenshot of ${title} project`}
+            fill
+            quality={95}
+            className="object-cover"
+          />
         </div>
       </section>
 

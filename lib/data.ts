@@ -1,6 +1,7 @@
 import React from "react";
 import { CgWorkAlt } from "react-icons/cg";
-import { FaReact, FaCode } from "react-icons/fa";
+import { FaCode } from "react-icons/fa";
+import { SiLaravel } from "react-icons/si";
 import { LuGraduationCap } from "react-icons/lu";
 
 export const links = [
@@ -36,7 +37,7 @@ export const experiencesData = [
     titleKey: "experience.currentJob.title",
     locationKey: "experience.currentJob.location",
     descriptionKey: "experience.currentJob.description",
-    icon: React.createElement(FaReact),
+    icon: React.createElement(SiLaravel),
     dateKey: "experience.currentJob.date",
   },
   {
@@ -76,11 +77,7 @@ export const projectsData = [
       "A sophisticated multi-tenant SaaS application with tenant isolation, subscription management, and dynamic feature toggling. Built with Laravel's multi-tenancy package, featuring automated tenant provisioning, custom domains, and scalable architecture.",
     tags: ["Laravel", "Multi-Tenancy", "Livewire", "Stripe", "Redis", "Queue Jobs", "API"],
     images: [
-      "/images/project1.jpg",
-      "/images/project1-2.jpg",
-      "/images/project1-3.jpg",
-      "/images/project1-4.jpg",
-      "/images/project1-5.jpg",
+      "/images/saas-platform.svg",
     ],
     link: "https://github.com/yourusername/laravel-saas-platform",
   },
@@ -90,11 +87,7 @@ export const projectsData = [
       "A comprehensive e-commerce platform with advanced inventory management, multi-vendor support, payment gateway integration, and real-time analytics. Features include product variants, discount systems, order tracking, and automated email marketing.",
     tags: ["Laravel", "Livewire", "Alpine.js", "Stripe", "PayPal", "Elasticsearch", "Redis"],
     images: [
-      "/images/project2.jpg",
-      "/images/project2-2.jpg",
-      "/images/project2-3.jpg",
-      "/images/project2-4.jpg",
-      "/images/project2-5.jpg",
+      "/images/ecommerce-platform.svg",
     ],
     link: "https://github.com/yourusername/enterprise-ecommerce",
   },
@@ -104,11 +97,7 @@ export const projectsData = [
       "A powerful content management system with Laravel Filament featuring role-based permissions, content scheduling, media management, SEO optimization, and custom form builders. Includes audit trails, backup systems, and multi-language support.",
     tags: ["Laravel", "Filament", "Spatie Permissions", "Media Library", "SEO", "Backup"],
     images: [
-      "/images/project3.jpg",
-      "/images/project3-2.jpg",
-      "/images/project3-3.jpg",
-      "/images/project3-4.jpg",
-      "/images/project3-5.jpg",
+      "/images/admin-panel-cms.svg",
     ],
     link: "https://github.com/yourusername/advanced-cms",
   },
@@ -118,11 +107,7 @@ export const projectsData = [
       "A collaborative project management application with real-time updates, task tracking, team collaboration, and time logging. Features include Kanban boards, Gantt charts, file sharing, and integrated communication tools using Laravel Echo and WebSockets.",
     tags: ["Laravel", "Livewire", "WebSockets", "Laravel Echo", "Pusher", "File Storage"],
     images: [
-      "/images/project1.jpg",
-      "/images/project1-2.jpg",
-      "/images/project1-3.jpg",
-      "/images/project1-4.jpg",
-      "/images/project1-5.jpg",
+      "/images/project-management.svg",
     ],
     link: "https://github.com/yourusername/project-management",
   },
@@ -132,11 +117,7 @@ export const projectsData = [
       "A comprehensive financial application with invoice generation, expense tracking, financial reporting, and tax calculations. Includes automated recurring billing, payment reminders, and integration with accounting software APIs.",
     tags: ["Laravel", "Filament", "PDF Generation", "Charts", "API Integration", "Scheduling"],
     images: [
-      "/images/project2.jpg",
-      "/images/project2-2.jpg",
-      "/images/project2-3.jpg",
-      "/images/project2-4.jpg",
-      "/images/project2-5.jpg",
+      "/images/financial-system.svg",
     ],
     link: "https://github.com/yourusername/financial-management",
   },
@@ -146,11 +127,7 @@ export const projectsData = [
       "An educational platform with course creation, student enrollment, progress tracking, and assessment tools. Features include video streaming, interactive quizzes, certificates generation, and discussion forums with real-time notifications.",
     tags: ["Laravel", "Livewire", "Video Processing", "Certificates", "Forums", "Notifications"],
     images: [
-      "/images/project3.jpg",
-      "/images/project3-2.jpg",
-      "/images/project3-3.jpg",
-      "/images/project3-4.jpg",
-      "/images/project3-5.jpg",
+      "/images/learning-management.svg",
     ],
     link: "https://github.com/yourusername/learning-management",
   },

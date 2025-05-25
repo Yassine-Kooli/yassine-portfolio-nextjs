@@ -1,0 +1,120 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#fafafa"/>
+  
+  <!-- Header -->
+  <rect x="0" y="0" width="800" height="70" fill="#0f172a"/>
+  <text x="30" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white">FinanceFlow</text>
+  <text x="30" y="50" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8">Financial Management System</text>
+  
+  <!-- Navigation -->
+  <rect x="0" y="70" width="800" height="40" fill="#1e293b"/>
+  <text x="30" y="90" font-family="Arial, sans-serif" font-size="12" fill="white">Dashboard</text>
+  <text x="110" y="90" font-family="Arial, sans-serif" font-size="12" fill="white">Invoices</text>
+  <text x="180" y="90" font-family="Arial, sans-serif" font-size="12" fill="white">Expenses</text>
+  <text x="250" y="90" font-family="Arial, sans-serif" font-size="12" fill="white">Reports</text>
+  <text x="320" y="90" font-family="Arial, sans-serif" font-size="12" fill="white">Clients</text>
+  
+  <!-- User Menu -->
+  <rect x="680" y="75" width="100" height="30" fill="#374151" rx="15"/>
+  <text x="700" y="92" font-family="Arial, sans-serif" font-size="11" fill="white">John Doe</text>
+  
+  <!-- Main Dashboard -->
+  <rect x="20" y="130" width="760" height="450" fill="white" stroke="#e5e7eb" rx="8"/>
+  
+  <!-- Dashboard Title -->
+  <text x="40" y="160" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#111827">Financial Dashboard</text>
+  <text x="40" y="180" font-family="Arial, sans-serif" font-size="14" fill="#6b7280">Overview of your financial data for January 2024</text>
+  
+  <!-- KPI Cards -->
+  <rect x="40" y="200" width="170" height="100" fill="#dcfce7" stroke="#10b981" rx="8"/>
+  <text x="50" y="220" font-family="Arial, sans-serif" font-size="12" fill="#065f46">Total Revenue</text>
+  <text x="50" y="250" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#065f46">$47,250</text>
+  <text x="50" y="275" font-family="Arial, sans-serif" font-size="11" fill="#059669">↗ +12.5% from last month</text>
+  
+  <rect x="230" y="200" width="170" height="100" fill="#fef3c7" stroke="#f59e0b" rx="8"/>
+  <text x="240" y="220" font-family="Arial, sans-serif" font-size="12" fill="#92400e">Total Expenses</text>
+  <text x="240" y="250" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#92400e">$23,180</text>
+  <text x="240" y="275" font-family="Arial, sans-serif" font-size="11" fill="#d97706">↗ +5.2% from last month</text>
+  
+  <rect x="420" y="200" width="170" height="100" fill="#dbeafe" stroke="#3b82f6" rx="8"/>
+  <text x="430" y="220" font-family="Arial, sans-serif" font-size="12" fill="#1e40af">Net Profit</text>
+  <text x="430" y="250" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#1e40af">$24,070</text>
+  <text x="430" y="275" font-family="Arial, sans-serif" font-size="11" fill="#2563eb">↗ +18.3% from last month</text>
+  
+  <rect x="610" y="200" width="150" height="100" fill="#f3e8ff" stroke="#8b5cf6" rx="8"/>
+  <text x="620" y="220" font-family="Arial, sans-serif" font-size="12" fill="#6b21a8">Pending Invoices</text>
+  <text x="620" y="250" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#6b21a8">12</text>
+  <text x="620" y="275" font-family="Arial, sans-serif" font-size="11" fill="#7c3aed">Worth $8,450</text>
+  
+  <!-- Chart Area -->
+  <text x="40" y="340" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#111827">Revenue vs Expenses</text>
+  
+  <!-- Simple Chart -->
+  <rect x="40" y="360" width="500" height="180" fill="#f9fafb" stroke="#e5e7eb" rx="4"/>
+  
+  <!-- Chart Bars -->
+  <rect x="60" y="440" width="30" height="80" fill="#10b981"/>
+  <rect x="100" y="420" width="30" height="100" fill="#10b981"/>
+  <rect x="140" y="400" width="30" height="120" fill="#10b981"/>
+  <rect x="180" y="380" width="30" height="140" fill="#10b981"/>
+  <rect x="220" y="360" width="30" height="160" fill="#10b981"/>
+  <rect x="260" y="370" width="30" height="150" fill="#10b981"/>
+  
+  <!-- Expense bars -->
+  <rect x="70" y="460" width="30" height="60" fill="#f59e0b"/>
+  <rect x="110" y="450" width="30" height="70" fill="#f59e0b"/>
+  <rect x="150" y="440" width="30" height="80" fill="#f59e0b"/>
+  <rect x="190" y="430" width="30" height="90" fill="#f59e0b"/>
+  <rect x="230" y="420" width="30" height="100" fill="#f59e0b"/>
+  <rect x="270" y="430" width="30" height="90" fill="#f59e0b"/>
+  
+  <!-- Chart Labels -->
+  <text x="70" y="535" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Jan</text>
+  <text x="110" y="535" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Feb</text>
+  <text x="150" y="535" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Mar</text>
+  <text x="190" y="535" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Apr</text>
+  <text x="230" y="535" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">May</text>
+  <text x="270" y="535" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Jun</text>
+  
+  <!-- Legend -->
+  <rect x="320" y="380" width="15" height="15" fill="#10b981"/>
+  <text x="345" y="392" font-family="Arial, sans-serif" font-size="12" fill="#111827">Revenue</text>
+  <rect x="320" y="405" width="15" height="15" fill="#f59e0b"/>
+  <text x="345" y="417" font-family="Arial, sans-serif" font-size="12" fill="#111827">Expenses</text>
+  
+  <!-- Recent Transactions -->
+  <text x="560" y="340" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#111827">Recent Transactions</text>
+  
+  <rect x="560" y="360" width="200" height="160" fill="#f9fafb" stroke="#e5e7eb" rx="4"/>
+  
+  <!-- Transaction Items -->
+  <text x="570" y="380" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#111827">Client Payment</text>
+  <text x="570" y="395" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Acme Corp - Invoice #1234</text>
+  <text x="720" y="380" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#10b981">+$2,500</text>
+  
+  <text x="570" y="415" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#111827">Office Supplies</text>
+  <text x="570" y="430" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Staples - Office materials</text>
+  <text x="720" y="415" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#ef4444">-$150</text>
+  
+  <text x="570" y="450" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#111827">Software License</text>
+  <text x="570" y="465" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Adobe Creative Suite</text>
+  <text x="720" y="450" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#ef4444">-$52.99</text>
+  
+  <text x="570" y="485" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#111827">Freelancer Payment</text>
+  <text x="570" y="500" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Design work - Project X</text>
+  <text x="720" y="485" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#ef4444">-$800</text>
+  
+  <!-- Quick Actions -->
+  <rect x="40" y="550" width="100" height="25" fill="#3b82f6" rx="12"/>
+  <text x="70" y="565" font-family="Arial, sans-serif" font-size="11" fill="white">New Invoice</text>
+  
+  <rect x="160" y="550" width="100" height="25" fill="#10b981" rx="12"/>
+  <text x="185" y="565" font-family="Arial, sans-serif" font-size="11" fill="white">Add Expense</text>
+  
+  <rect x="280" y="550" width="100" height="25" fill="#8b5cf6" rx="12"/>
+  <text x="310" y="565" font-family="Arial, sans-serif" font-size="11" fill="white">Generate Report</text>
+  
+  <!-- Laravel Badge -->
+  <text x="650" y="590" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ff2d20">Laravel + Filament</text>
+</svg>
