@@ -210,21 +210,24 @@ export default function Intro() {
 
       {/* Stats row */}
       <motion.div
-        className="mt-12 flex items-center justify-center gap-8 sm:gap-16"
+        className="mt-10 flex items-center justify-center gap-0"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.6 }}
       >
         {[
-          { value: "4+", label: "Years Experience" },
-          { value: "10+", label: "Projects Delivered" },
-          { value: "100%", label: "Client Satisfaction" },
-        ].map((stat) => (
-          <div key={stat.label} className="text-center">
-            <p className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-500 dark:from-primary-400 dark:to-secondary-400">
+          { value: "4+", label: "Years Exp." },
+          { value: "10+", label: "Projects" },
+          { value: "100%", label: "Satisfaction" },
+        ].map((stat, i) => (
+          <div
+            key={stat.label}
+            className={`text-center px-5 sm:px-10 ${i < 2 ? "border-r border-gray-200 dark:border-white/10" : ""}`}
+          >
+            <p className="text-xl sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-500 dark:from-primary-400 dark:to-secondary-400">
               {stat.value}
             </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{stat.label}</p>
+            <p className="text-[0.65rem] text-gray-400 dark:text-gray-500 mt-0.5 uppercase tracking-wider">{stat.label}</p>
           </div>
         ))}
       </motion.div>

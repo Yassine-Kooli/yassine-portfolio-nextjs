@@ -138,7 +138,7 @@ export default function Skills() {
                       key={skill.name}
                       custom={i}
                       variants={skillVariants}
-                      className="flex items-center gap-1.5 bg-gray-50 dark:bg-white/8 border border-black/5 dark:border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-gray-700 dark:text-white/75 hover:border-primary-300 dark:hover:border-primary-500/50 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-200 cursor-default"
+                      className="flex items-center gap-1.5 bg-gray-100 dark:bg-white/10 border border-black/5 dark:border-white/15 rounded-lg px-2.5 py-1.5 text-xs text-gray-700 dark:text-white/80 hover:border-primary-300 dark:hover:border-primary-500/50 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-200 cursor-default"
                     >
                       <SkillIcon className="text-sm flex-shrink-0" />
                       <span>{skill.name}</span>

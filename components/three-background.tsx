@@ -10,14 +10,16 @@ export default function ThreeBackground() {
 
   useEffect(() => {
     if (!containerRef.current) return;
+    // Skip on mobile — saves battery and removes lag on low-end devices
+    if (window.innerWidth < 768) return;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 3;
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(1); // never >1 — halves fill cost on retina
 
     while (containerRef.current.firstChild) {
       containerRef.current.removeChild(containerRef.current.firstChild);
@@ -27,9 +29,10 @@ export default function ThreeBackground() {
     const isDark = theme === "dark";
     const primaryColor = isDark ? new THREE.Color(0x818cf8) : new THREE.Color(0x4f46e5);
     const secondaryColor = isDark ? new THREE.Color(0x2dd4bf) : new THREE.Color(0x0d9488);
+    // pre-allocate — no GC pressure in hot loop
+    const blendedColor = new THREE.Color();
 
-    // Nodes
-    const nodeCount = 90;
+    const nodeCount = 50; // was 90 → O(n²) pairs: 1225 vs 4005
     const positions: THREE.Vector3[] = [];
     const velocities: THREE.Vector3[] = [];
 
@@ -46,7 +49,6 @@ export default function ThreeBackground() {
       ));
     }
 
-    // Node dots
     const dotGeometry = new THREE.BufferGeometry();
     const dotPositions = new Float32Array(nodeCount * 3);
     positions.forEach((p, i) => {
@@ -64,19 +66,18 @@ export default function ThreeBackground() {
     const dots = new THREE.Points(dotGeometry, dotMaterial);
     scene.add(dots);
 
-    // Lines
     const lineGeometry = new THREE.BufferGeometry();
     const maxLines = nodeCount * nodeCount;
     const linePositions = new Float32Array(maxLines * 6);
     const lineColors = new Float32Array(maxLines * 6);
     lineGeometry.setAttribute("position", new THREE.BufferAttribute(linePositions, 3));
     lineGeometry.setAttribute("color", new THREE.BufferAttribute(lineColors, 3));
-    const lineMaterial = new THREE.LineSegments(lineGeometry, new THREE.LineBasicMaterial({
+    const lineSegments = new THREE.LineSegments(lineGeometry, new THREE.LineBasicMaterial({
       vertexColors: true,
       transparent: true,
       opacity: isDark ? 0.3 : 0.2,
     }));
-    scene.add(lineMaterial);
+    scene.add(lineSegments);
 
     const CONNECT_DIST = 1.6;
     let mouseX = 0;
@@ -86,7 +87,7 @@ export default function ThreeBackground() {
       mouseX = (e.clientX / window.innerWidth - 0.5) * 6;
       mouseY = -(e.clientY / window.innerHeight - 0.5) * 4;
     };
-    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -95,53 +96,56 @@ export default function ThreeBackground() {
     };
     window.addEventListener("resize", handleResize);
 
+    // 30fps cap — halves GPU load vs uncapped rAF
+    const TARGET_INTERVAL = 1000 / 30;
+    let last = 0;
     let animId: number;
-    const animate = () => {
-      animId = requestAnimationFrame(animate);
 
-      // Update node positions
+    const animate = (now: number) => {
+      animId = requestAnimationFrame(animate);
+      if (now - last < TARGET_INTERVAL) return;
+      last = now;
+
       for (let i = 0; i < nodeCount; i++) {
         positions[i].add(velocities[i]);
         if (Math.abs(positions[i].x) > 4) velocities[i].x *= -1;
         if (Math.abs(positions[i].y) > 3) velocities[i].y *= -1;
-
         dotPositions[i * 3] = positions[i].x;
         dotPositions[i * 3 + 1] = positions[i].y;
         dotPositions[i * 3 + 2] = positions[i].z;
       }
       dotGeometry.attributes.position.needsUpdate = true;
 
-      // Draw lines between close nodes + mouse proximity glow
       let lineIdx = 0;
-      const mouseVec = new THREE.Vector3(mouseX, mouseY, 0);
-
       for (let i = 0; i < nodeCount; i++) {
         for (let j = i + 1; j < nodeCount; j++) {
-          const dist = positions[i].distanceTo(positions[j]);
+          const dx = positions[i].x - positions[j].x;
+          const dy = positions[i].y - positions[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy); // skip z — cheaper
           if (dist < CONNECT_DIST) {
             const alpha = 1 - dist / CONNECT_DIST;
-
-            // Color blend based on mouse proximity
             const midX = (positions[i].x + positions[j].x) / 2;
             const midY = (positions[i].y + positions[j].y) / 2;
             const mouseDist = Math.sqrt((midX - mouseX) ** 2 + (midY - mouseY) ** 2);
             const mouseInfluence = Math.max(0, 1 - mouseDist / 2);
 
-            const color = new THREE.Color().lerpColors(primaryColor, secondaryColor, mouseInfluence * 0.7);
+            // reuse pre-allocated color object
+            blendedColor.lerpColors(primaryColor, secondaryColor, mouseInfluence * 0.7);
 
-            linePositions[lineIdx * 6] = positions[i].x;
-            linePositions[lineIdx * 6 + 1] = positions[i].y;
-            linePositions[lineIdx * 6 + 2] = positions[i].z;
-            linePositions[lineIdx * 6 + 3] = positions[j].x;
-            linePositions[lineIdx * 6 + 4] = positions[j].y;
-            linePositions[lineIdx * 6 + 5] = positions[j].z;
+            const base = lineIdx * 6;
+            linePositions[base] = positions[i].x;
+            linePositions[base + 1] = positions[i].y;
+            linePositions[base + 2] = positions[i].z;
+            linePositions[base + 3] = positions[j].x;
+            linePositions[base + 4] = positions[j].y;
+            linePositions[base + 5] = positions[j].z;
 
-            lineColors[lineIdx * 6] = color.r * alpha;
-            lineColors[lineIdx * 6 + 1] = color.g * alpha;
-            lineColors[lineIdx * 6 + 2] = color.b * alpha;
-            lineColors[lineIdx * 6 + 3] = color.r * alpha;
-            lineColors[lineIdx * 6 + 4] = color.g * alpha;
-            lineColors[lineIdx * 6 + 5] = color.b * alpha;
+            lineColors[base] = blendedColor.r * alpha;
+            lineColors[base + 1] = blendedColor.g * alpha;
+            lineColors[base + 2] = blendedColor.b * alpha;
+            lineColors[base + 3] = blendedColor.r * alpha;
+            lineColors[base + 4] = blendedColor.g * alpha;
+            lineColors[base + 5] = blendedColor.b * alpha;
             lineIdx++;
           }
         }
@@ -150,10 +154,9 @@ export default function ThreeBackground() {
       lineGeometry.setDrawRange(0, lineIdx * 2);
       lineGeometry.attributes.position.needsUpdate = true;
       lineGeometry.attributes.color.needsUpdate = true;
-
       renderer.render(scene, camera);
     };
-    animate();
+    animId = requestAnimationFrame(animate);
 
     const container = containerRef.current;
     return () => {

@@ -1,114 +1,108 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { projectsData } from "@/lib/data";
-import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
-import ImageModal from "./image-modal";
+import { FaGithub } from "react-icons/fa";
+import { HiArrowRight } from "react-icons/hi";
 
-type ProjectProps = (typeof projectsData)[number] & { index?: number };
+type ProjectProps = (typeof projectsData)[number] & { index: number };
 
-export default function Project({ title, description, tags, images, link, index = 0 }: ProjectProps) {
+const typeColors: Record<string, string> = {
+  "SaaS": "bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300",
+  "E-Commerce": "bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-300",
+  "Admin Panel": "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
+  "Internal Tool": "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300",
+  "EdTech": "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300",
+};
+
+export default function Project({ title, type, description, features, tags, link, index }: ProjectProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["0 1", "1.1 1"] });
+  const opacity = useTransform(scrollYProgress, [0, 1], [0.4, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [30, 0]);
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["0 1", "1.33 1"],
-  });
-  const scale = useTransform(scrollYProgress, [0, 1], [0.85, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
-
-  const gradients = [
-    "from-violet-500/20 via-transparent to-transparent",
-    "from-teal-500/20 via-transparent to-transparent",
-    "from-blue-500/20 via-transparent to-transparent",
-    "from-rose-500/20 via-transparent to-transparent",
-    "from-amber-500/20 via-transparent to-transparent",
-    "from-emerald-500/20 via-transparent to-transparent",
-  ];
-  const gradient = gradients[index % gradients.length];
+  const num = String(index + 1).padStart(2, "0");
+  const colorClass = typeColors[type] ?? "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300";
 
   return (
-    <motion.div ref={ref} style={{ scale, opacity }} className="group mb-4 sm:mb-6 last:mb-0">
-      <div className={`relative bg-white dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-2xl overflow-hidden hover:border-primary-300/50 dark:hover:border-primary-600/40 hover:shadow-xl hover:shadow-primary-100/30 dark:hover:shadow-primary-900/20 transition-all duration-300 max-w-[42rem]`}>
-        {/* Gradient accent */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${gradient} pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+    <motion.div ref={ref} style={{ opacity, y }} className="mb-0">
+      <div className="group relative py-8 border-b border-black/8 dark:border-white/8 hover:border-primary-300/50 dark:hover:border-primary-700/50 transition-colors duration-300">
 
-        {/* Mobile image */}
-        <div
-          className="block sm:hidden w-full h-44 relative overflow-hidden cursor-pointer"
-          onClick={() => setIsModalOpen(true)}
-        >
-          <Image
-            src={images[0]}
-            alt={`${title} project`}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            quality={85}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-        </div>
+        {/* Hover background accent */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-50/0 via-primary-50/60 to-primary-50/0 dark:from-transparent dark:via-white/[0.02] dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-lg pointer-events-none" />
 
-        <div className="relative z-10 pt-5 pb-7 px-6 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[55%] flex flex-col sm:h-[20rem] sm:group-even:ml-[18rem]">
-          <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-            {title}
-          </h3>
-          <p className="mt-2 leading-relaxed text-gray-600 dark:text-white/65 text-sm flex-1">
-            {description}
-          </p>
+        <div className="relative grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-x-8 gap-y-4">
 
-          <div className="flex items-center gap-3 mt-4">
-            {link && !link.includes("yourusername") && (
-              <Link
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs text-gray-600 dark:text-white/60 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium"
-                aria-label={`${title} on GitHub`}
-              >
-                <FaGithub className="text-base" />
-                <span>Code</span>
-              </Link>
-            )}
+          {/* Number */}
+          <div className="hidden sm:block">
+            <span className="text-5xl font-black text-gray-100 dark:text-white/[0.06] leading-none select-none group-hover:text-primary-100 dark:group-hover:text-primary-900/40 transition-colors duration-300">
+              {num}
+            </span>
           </div>
 
-          <ul className="flex flex-wrap mt-4 gap-1.5 sm:mt-auto">
-            {tags.map((tag, i) => (
-              <li
-                key={i}
-                className="bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 border border-primary-100 dark:border-primary-800/40 px-2.5 py-0.5 text-[0.65rem] uppercase tracking-wider rounded-full font-medium"
-              >
-                {tag}
-              </li>
-            ))}
-          </ul>
-        </div>
+          {/* Content */}
+          <div>
+            {/* Header row */}
+            <div className="flex flex-wrap items-start gap-3 mb-3">
+              <div className="flex items-center gap-2 flex-1 min-w-0">
+                <span className="text-xs font-medium sm:hidden text-gray-400 dark:text-gray-600">{num} /</span>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                  {title}
+                </h3>
+              </div>
+              <span className={`text-[0.65rem] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full flex-shrink-0 ${colorClass}`}>
+                {type}
+              </span>
+            </div>
 
-        {/* Desktop image */}
-        <div
-          className="absolute hidden sm:block top-8 -right-40 w-[28.25rem] h-[18rem] rounded-xl shadow-2xl overflow-hidden cursor-pointer group-even:right-[initial] group-even:-left-40 transition-transform duration-500 group-hover:-translate-y-1"
-          onClick={() => setIsModalOpen(true)}
-        >
-          <Image
-            src={images[0]}
-            alt={`${title} project`}
-            fill
-            quality={95}
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-l from-black/10 to-transparent" />
+            {/* Description */}
+            <p className="text-sm text-gray-600 dark:text-white/60 leading-relaxed mb-4 max-w-[52rem]">
+              {description}
+            </p>
+
+            {/* Features */}
+            <ul className="space-y-1.5 mb-5">
+              {features.map((f, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-gray-700 dark:text-white/70">
+                  <span className="mt-[3px] w-4 h-4 rounded-full bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center flex-shrink-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary-500 dark:bg-primary-400" />
+                  </span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+
+            {/* Footer row: tags + link */}
+            <div className="flex flex-wrap items-center gap-3 justify-between">
+              <ul className="flex flex-wrap gap-1.5">
+                {tags.map((tag, i) => (
+                  <li
+                    key={i}
+                    className="text-[0.65rem] px-2.5 py-1 rounded-md bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-white/70 font-medium border border-black/5 dark:border-white/15"
+                  >
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+
+              {link && (
+                <Link
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-xs font-medium text-gray-500 dark:text-white/40 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group/link flex-shrink-0"
+                >
+                  <FaGithub className="text-sm" />
+                  View code
+                  <HiArrowRight className="text-sm -rotate-45 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                </Link>
+              )}
+            </div>
+          </div>
         </div>
       </div>
-
-      <ImageModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        imageSrc={images[0]}
-        imageAlt={`${title} project`}
-      />
     </motion.div>
   );
 }

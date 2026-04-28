@@ -73,63 +73,81 @@ export const experiencesData = [
 export const projectsData = [
   {
     title: "Multi-Tenant SaaS Platform",
+    type: "SaaS",
     description:
-      "A sophisticated multi-tenant SaaS application with tenant isolation, subscription management, and dynamic feature toggling. Built with Laravel's multi-tenancy package, featuring automated tenant provisioning, custom domains, and scalable architecture.",
-    tags: ["Laravel", "Multi-Tenancy", "Livewire", "Stripe", "Redis", "Queue Jobs", "API"],
-    images: [
-      "/images/saas-platform.svg",
+      "Full multi-tenant architecture with isolated databases per tenant, automated provisioning, custom domain routing, and dynamic feature flags. Built for scale from day one.",
+    features: [
+      "Per-tenant DB isolation with automatic provisioning",
+      "Stripe subscription billing + plan upgrades/downgrades",
+      "Custom domain mapping with SSL per tenant",
     ],
-    link: "https://github.com/yourusername/laravel-saas-platform",
+    tags: ["Laravel", "Multi-Tenancy", "Livewire", "Stripe", "Redis", "Queue Jobs"],
+    link: "",
   },
   {
-    title: "Enterprise E-Commerce Solution",
+    title: "Enterprise E-Commerce Platform",
+    type: "E-Commerce",
     description:
-      "A comprehensive e-commerce platform with advanced inventory management, multi-vendor support, payment gateway integration, and real-time analytics. Features include product variants, discount systems, order tracking, and automated email marketing.",
-    tags: ["Laravel", "Livewire", "Alpine.js", "Stripe", "PayPal", "Elasticsearch", "Redis"],
-    images: [
-      "/images/ecommerce-platform.svg",
+      "Multi-vendor marketplace with advanced inventory management, real-time stock tracking, and integrated payment gateways. Handles complex discount logic, order lifecycle, and automated email campaigns.",
+    features: [
+      "Multi-vendor support with vendor dashboards",
+      "Elasticsearch-powered product search with filters",
+      "Stripe + PayPal with webhook-based order fulfillment",
     ],
-    link: "https://github.com/yourusername/enterprise-ecommerce",
+    tags: ["Laravel", "Livewire", "Alpine.js", "Stripe", "Elasticsearch", "Redis"],
+    link: "",
   },
   {
     title: "Advanced Admin Panel & CMS",
+    type: "Admin Panel",
     description:
-      "A powerful content management system with Laravel Filament featuring role-based permissions, content scheduling, media management, SEO optimization, and custom form builders. Includes audit trails, backup systems, and multi-language support.",
-    tags: ["Laravel", "Filament", "Spatie Permissions", "Media Library", "SEO", "Backup"],
-    images: [
-      "/images/admin-panel-cms.svg",
+      "Full-featured CMS built on Laravel Filament with granular RBAC, content scheduling, media management, and SEO tooling. Includes audit logs, automated backups, and multi-language content.",
+    features: [
+      "Spatie Permissions — role + permission matrix",
+      "Media Library with image transformations",
+      "Audit trail: who changed what and when",
     ],
-    link: "https://github.com/yourusername/advanced-cms",
+    tags: ["Laravel", "Filament", "Spatie", "Media Library", "SEO"],
+    link: "",
   },
   {
     title: "Real-Time Project Management Tool",
+    type: "SaaS",
     description:
-      "A collaborative project management application with real-time updates, task tracking, team collaboration, and time logging. Features include Kanban boards, Gantt charts, file sharing, and integrated communication tools using Laravel Echo and WebSockets.",
-    tags: ["Laravel", "Livewire", "WebSockets", "Laravel Echo", "Pusher", "File Storage"],
-    images: [
-      "/images/project-management.svg",
+      "Team collaboration tool with live Kanban boards, time tracking, and file sharing. WebSockets push updates instantly across all connected clients — no polling.",
+    features: [
+      "Live Kanban & Gantt views via Laravel Echo + Pusher",
+      "Time logging with exportable reports",
+      "In-app notifications + file attachment storage",
     ],
-    link: "https://github.com/yourusername/project-management",
+    tags: ["Laravel", "Livewire", "WebSockets", "Laravel Echo", "Pusher"],
+    link: "",
   },
   {
     title: "Financial Management System",
+    type: "Internal Tool",
     description:
-      "A comprehensive financial application with invoice generation, expense tracking, financial reporting, and tax calculations. Includes automated recurring billing, payment reminders, and integration with accounting software APIs.",
-    tags: ["Laravel", "Filament", "PDF Generation", "Charts", "API Integration", "Scheduling"],
-    images: [
-      "/images/financial-system.svg",
+      "Invoice generation, expense tracking, tax calculation, and recurring billing in one place. Integrated with external accounting APIs and automated payment reminder sequences.",
+    features: [
+      "PDF invoice generation with custom branding",
+      "Recurring billing with automatic retry logic",
+      "Chart-based financial dashboards (monthly P&L)",
     ],
-    link: "https://github.com/yourusername/financial-management",
+    tags: ["Laravel", "Filament", "PDF Generation", "Charts", "Scheduling"],
+    link: "",
   },
   {
-    title: "Learning Management System (LMS)",
+    title: "Learning Management System",
+    type: "EdTech",
     description:
-      "An educational platform with course creation, student enrollment, progress tracking, and assessment tools. Features include video streaming, interactive quizzes, certificates generation, and discussion forums with real-time notifications.",
-    tags: ["Laravel", "Livewire", "Video Processing", "Certificates", "Forums", "Notifications"],
-    images: [
-      "/images/learning-management.svg",
+      "Course platform with video streaming, progress tracking, interactive quizzes, and automated certificate generation. Students get real-time notifications for new content and discussion replies.",
+    features: [
+      "Video processing pipeline with adaptive streaming",
+      "Auto-generated PDF certificates on course completion",
+      "Discussion forums with real-time reply notifications",
     ],
-    link: "https://github.com/yourusername/learning-management",
+    tags: ["Laravel", "Livewire", "Video Processing", "Certificates", "Notifications"],
+    link: "",
   },
 ] as const;
 

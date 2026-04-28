@@ -1,81 +1,64 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
 
 export default function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [cursorVariant, setCursorVariant] = useState("default");
+  const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const mouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY,
-      });
+    if (window.innerWidth < 768) return;
+
+    const el = cursorRef.current;
+    if (!el) return;
+
+    let x = 0, y = 0;
+    let tx = 0, ty = 0;
+    let hovering = false;
+    let rafId: number;
+
+    const onMouseMove = (e: MouseEvent) => {
+      tx = e.clientX;
+      ty = e.clientY;
     };
 
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.tagName === "A" ||
-        target.tagName === "BUTTON" ||
-        target.closest("a") ||
-        target.closest("button") ||
-        target.getAttribute("role") === "button"
-      ) {
-        setCursorVariant("hover");
-      } else {
-        setCursorVariant("default");
-      }
+    const onMouseOver = (e: MouseEvent) => {
+      const t = e.target as HTMLElement;
+      hovering = !!(
+        t.tagName === "A" || t.tagName === "BUTTON" ||
+        t.closest("a") || t.closest("button") ||
+        t.getAttribute("role") === "button"
+      );
     };
 
-    window.addEventListener("mousemove", mouseMove);
-    window.addEventListener("mouseover", handleMouseOver);
+    const tick = () => {
+      // spring lerp — no React state, no re-renders
+      x += (tx - x) * 0.18;
+      y += (ty - y) * 0.18;
+      const size = hovering ? 48 : 32;
+      const half = size / 2;
+      el.style.transform = `translate(${x - half}px,${y - half}px)`;
+      el.style.width = `${size}px`;
+      el.style.height = `${size}px`;
+      rafId = requestAnimationFrame(tick);
+    };
+
+    el.style.display = "block";
+    rafId = requestAnimationFrame(tick);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    window.addEventListener("mouseover", onMouseOver, { passive: true });
 
     return () => {
-      window.removeEventListener("mousemove", mouseMove);
-      window.removeEventListener("mouseover", handleMouseOver);
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseover", onMouseOver);
     };
   }, []);
 
-  const variants = {
-    default: {
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      height: 32,
-      width: 32,
-      backgroundColor: "rgba(99, 102, 241, 0.2)",
-      border: "1px solid rgba(99, 102, 241, 0.5)",
-      transition: {
-        type: "spring",
-        mass: 0.6,
-      },
-    },
-    hover: {
-      x: mousePosition.x - 24,
-      y: mousePosition.y - 24,
-      height: 48,
-      width: 48,
-      backgroundColor: "rgba(99, 102, 241, 0.4)",
-      border: "1px solid rgba(99, 102, 241, 0.8)",
-      transition: {
-        type: "spring",
-        mass: 0.6,
-      },
-    },
-  };
-
-  // Only show custom cursor on desktop
-  if (typeof window !== "undefined" && window.innerWidth < 768) {
-    return null;
-  }
-
   return (
-    <motion.div
-      className="pointer-events-none fixed left-0 top-0 z-50 rounded-full mix-blend-difference"
-      variants={variants}
-      animate={cursorVariant}
+    <div
+      ref={cursorRef}
+      style={{ display: "none" }}
+      className="pointer-events-none fixed left-0 top-0 z-50 rounded-full mix-blend-difference bg-indigo-500/20 border border-indigo-500/50 will-change-transform"
     />
   );
 }
