@@ -37,7 +37,7 @@ export default function Project({ title, type, description, features, tags, link
 
           {/* Number */}
           <div className="hidden sm:block">
-            <span className="text-5xl font-black text-gray-100 dark:text-white/[0.06] leading-none select-none group-hover:text-primary-100 dark:group-hover:text-primary-900/40 transition-colors duration-300">
+            <span className="text-5xl font-black text-gray-300 dark:text-white/[0.15] leading-none select-none group-hover:text-primary-300 dark:group-hover:text-primary-700/60 transition-colors duration-300">
               {num}
             </span>
           </div>
