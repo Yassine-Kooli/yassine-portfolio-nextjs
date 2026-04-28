@@ -8,10 +8,10 @@
     "contact": "Contact"
   },
   "intro": {
-    "greeting": "Bonjour, je suis Yassine.",
+    "greeting": "Bonjour, je suis Yassine Kooli.",
     "role": "Je suis",
-    "title": "Développeur Laravel Junior",
-    "experience": "2+ ans",
+    "title": "Développeur Laravel",
+    "experience": "4+ ans",
     "description": "d'expérience. Je me spécialise dans la création",
     "focus": "d'applications web évolutives",
     "with": "avec",
@@ -21,9 +21,9 @@
   },
   "about": {
     "title": "À Propos de Moi",
-    "description": "Je suis un développeur Laravel junior avec 2+ ans d'expérience dans la création d'applications web évolutives. J'ai travaillé sur divers projets incluant des panneaux d'administration, des systèmes d'inventaire et des outils de réservation, acquérant une expérience pratique avec Laravel, Filament et Livewire tout en livrant des solutions pour des clients d'entreprise et des entreprises locales.",
-    "background": "Mon expertise technique inclut les outils de l'écosystème Laravel comme Filament pour les interfaces d'administration, Livewire pour les frontends dynamiques, et des pratiques de développement modernes avec Git et les méthodologies Agile. Je maîtrise la création d'APIs REST, le travail avec les bases de données MySQL, et la création d'interfaces responsives avec Tailwind CSS et Alpine.js.",
-    "approach": "Je me concentre sur l'écriture de code propre et maintenable en suivant les meilleures pratiques du développement web. Qu'il s'agisse de créer des tableaux de bord d'administration, d'implémenter la logique métier ou d'optimiser les performances d'applications, je m'engage à livrer des solutions de qualité. Je suis passionné par l'apprentissage continu et je reste à jour avec les dernières fonctionnalités Laravel et les tendances de développement."
+    "description": "Développeur Laravel avec 4+ ans d'expérience dans la création d'applications web évolutives — de panneaux d'administration et systèmes d'inventaire à des outils de réservation et plateformes SaaS. J'ai livré des solutions pour des clients d'entreprise et des entreprises locales, couvrant tout le cycle de vie du projet.",
+    "background": "Mon stack est centré sur l'écosystème Laravel : Filament pour des interfaces d'administration puissantes, Livewire pour des frontends réactifs, Alpine.js pour l'interactivité légère, et Tailwind CSS pour une UI propre. Je suis à l'aise avec la conception d'API REST, MySQL/PostgreSQL, Redis, les jobs en file d'attente et les fonctionnalités temps réel via WebSockets.",
+    "approach": "J'écris un code propre et maintenable en suivant les principes SOLID et les meilleures pratiques Laravel. Je m'épanouis dans les équipes Agile, j'aime collaborer avec les designers et les parties prenantes, et je prends en charge les décisions d'architecture jusqu'aux performances en production. Toujours en apprentissage — j'explore actuellement les microservices et le déploiement avancé avec Docker et les pipelines CI/CD."
   },
   "projects": {
     "title": "Projets en Vedette",
@@ -97,7 +97,7 @@
     "errorMessage": "Une erreur s'est produite. Veuillez réessayer."
   },
   "footer": {
-    "copyright": " 2025 Yassine. Tous droits réservés.",
+    "copyright": " 2026 Yassine Kooli. Tous droits réservés.",
     "aboutWebsite": "À propos de ce site web :",
     "builtWith": "construit avec React & Next.js, TypeScript, Tailwind CSS, three.js, Framer Motion, React Email & Resend, hébergement Vercel."
   }

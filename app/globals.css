@@ -52,3 +52,9 @@
     @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent dark:from-primary-400 dark:to-secondary-400;
   }
 }
+
+@layer utilities {
+  .dark\:bg-white\/8 {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+}

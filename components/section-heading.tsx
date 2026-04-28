@@ -8,10 +8,14 @@ type SectionHeadingProps = {
 
 export default function SectionHeading({ children, translationKey }: SectionHeadingProps) {
   const { t } = useTranslation();
+  const text = translationKey ? t(translationKey) : children;
 
   return (
-    <h2 className="text-3xl font-medium capitalize mb-8 text-center">
-      {translationKey ? t(translationKey) : children}
-    </h2>
+    <div className="flex flex-col items-center mb-10">
+      <h2 className="text-3xl font-bold capitalize text-gray-900 dark:text-white">
+        {text}
+      </h2>
+      <div className="mt-2 h-1 w-16 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500" />
+    </div>
   );
 }

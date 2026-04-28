@@ -8,22 +8,22 @@
     "contact": "Contact"
   },
   "intro": {
-    "greeting": "Hello, I'm Yassine.",
+    "greeting": "Hello, I'm Yassine Kooli.",
     "role": "I'm a",
-    "title": "Junior Laravel Developer",
-    "experience": "2+ years",
-    "description": "of experience. I specialize in building",
+    "title": "Laravel Developer",
+    "experience": "4+ years",
+    "description": "of experience building",
     "focus": "scalable web applications",
     "with": "with",
     "tech": "Laravel, Filament, Livewire, and modern PHP",
-    "contactButton": "Contact me here",
+    "contactButton": "Contact me",
     "downloadCV": "Download CV"
   },
   "about": {
     "title": "About Me",
-    "description": "I'm a Junior Laravel developer with 2+ years of experience building scalable web applications. I've worked on various projects including admin panels, inventory systems, and booking tools, gaining hands-on experience with Laravel, Filament, and Livewire while delivering solutions for both enterprise clients and local businesses.",
-    "background": "My technical expertise includes Laravel ecosystem tools like Filament for admin interfaces, Livewire for dynamic frontends, and modern development practices with Git and Agile methodologies. I'm proficient in building REST APIs, working with MySQL databases, and creating responsive interfaces with Tailwind CSS and Alpine.js.",
-    "approach": "I focus on writing clean, maintainable code and following best practices in web development. Whether it's building admin dashboards, implementing business logic, or optimizing application performance, I'm committed to delivering quality solutions. I'm passionate about continuous learning and staying updated with the latest Laravel features and development trends."
+    "description": "Laravel developer with 4+ years of hands-on experience building scalable web applications — from admin panels and inventory systems to booking tools and SaaS platforms. I've delivered solutions for enterprise clients and local businesses, working across the full lifecycle from requirements to deployment.",
+    "background": "My stack centers on the Laravel ecosystem: Filament for powerful admin interfaces, Livewire for reactive frontends, Alpine.js for lightweight interactivity, and Tailwind CSS for clean UI. I'm comfortable with REST API design, MySQL/PostgreSQL, Redis, queue jobs, and real-time features via WebSockets.",
+    "approach": "I write clean, maintainable code following SOLID principles and Laravel best practices. I thrive in Agile teams, enjoy collaborating with designers and stakeholders, and take ownership from architecture decisions to production performance tuning. Always learning — currently exploring microservices and advanced deployment with Docker and CI/CD pipelines."
   },
   "projects": {
     "title": "Featured Projects",
@@ -55,9 +55,9 @@
   "experience": {
     "title": "My Experience",
     "currentJob": {
-      "title": "Web Developer",
+      "title": "Laravel Developer",
       "location": "Satoripop, Sousse",
-      "description": "Develop and maintain enterprise-grade web applications using Laravel, Filament, Livewire, and Alpine.js, enhancing performance and scalability. Build internal dashboards in Agile teams, reducing feature delivery time by 20%. Refactor legacy codebases, improving maintainability and test coverage. Collaborate with designers, PMs, and clients to deliver user-focused features.",
+      "description": "Develop and maintain enterprise-grade web applications using Laravel, Filament, Livewire, and Alpine.js. Build internal dashboards in Agile teams, reducing feature delivery time by 20%. Refactor legacy codebases, improving maintainability and test coverage. Collaborate with designers, PMs, and clients to ship user-focused features.",
       "date": "August 2024 - Present"
     },
     "internship2024": {
@@ -97,7 +97,7 @@
     "errorMessage": "Something went wrong. Please try again."
   },
   "footer": {
-    "copyright": " 2025 Yassine. All rights reserved.",
+    "copyright": " 2026 Yassine Kooli. All rights reserved.",
     "aboutWebsite": "About this website:",
     "builtWith": "built with React & Next.js, TypeScript, Tailwind CSS, three.js, Framer Motion, React Email & Resend, Vercel hosting."
   }

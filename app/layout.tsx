@@ -14,14 +14,14 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Yassine | Junior Laravel Developer",
-  description: "Junior Laravel developer specializing in multi-tenant SaaS platforms, enterprise e-commerce solutions, and advanced admin panels. Expert in Laravel, Filament, Livewire, and modern PHP with 1+ years of experience.",
-  keywords: ["Laravel developer", "Junior PHP developer", "Multi-tenant SaaS", "Laravel Filament", "Livewire", "E-commerce development", "Admin panels", "Laravel expert", "PHP", "WebSockets", "API development"],
-  authors: [{ name: "Yassine" }],
-  creator: "Yassine",
+  title: "Yassine Kooli | Laravel Developer",
+  description: "Laravel developer with 4+ years of experience building scalable web applications, SaaS platforms, enterprise admin panels, and REST APIs with PHP, Filament, Livewire, and modern tooling.",
+  keywords: ["Laravel developer", "PHP developer", "Multi-tenant SaaS", "Laravel Filament", "Livewire", "E-commerce development", "Admin panels", "Laravel expert", "PHP", "WebSockets", "API development", "Yassine Kooli"],
+  authors: [{ name: "Yassine Kooli" }],
+  creator: "Yassine Kooli",
   openGraph: {
-    title: "Yassine | Junior Laravel Developer",
-    description: "Junior Laravel developer specializing in multi-tenant SaaS platforms, enterprise e-commerce solutions, and advanced admin panels",
+    title: "Yassine Kooli | Laravel Developer",
+    description: "Laravel developer with 4+ years of experience building scalable web applications, SaaS platforms, and enterprise solutions",
     url: "https://yassine-kooli.vercel.app/",
     siteName: "Yassine's Portfolio",
     locale: "en_US",
