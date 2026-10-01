@@ -2,59 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --color-primary-50: #eef2ff;
-    --color-primary-100: #e0e7ff;
-    --color-primary-200: #c7d2fe;
-    --color-primary-300: #a5b4fc;
-    --color-primary-400: #818cf8;
-    --color-primary-500: #6366f1;
-    --color-primary-600: #4f46e5;
-    --color-primary-700: #4338ca;
-    --color-primary-800: #3730a3;
-    --color-primary-900: #312e81;
-    --color-primary-950: #1e1b4b;
-
-    --color-secondary-50: #f0fdfa;
-    --color-secondary-100: #ccfbf1;
-    --color-secondary-200: #99f6e4;
-    --color-secondary-300: #5eead4;
-    --color-secondary-400: #2dd4bf;
-    --color-secondary-500: #14b8a6;
-    --color-secondary-600: #0d9488;
-    --color-secondary-700: #0f766e;
-    --color-secondary-800: #115e59;
-    --color-secondary-900: #134e4a;
-    --color-secondary-950: #042f2e;
-
-    --color-dark: #0f172a;
-    --color-light: #f8fafc;
-
-    --line-color: #e5e7eb;
-  }
-
-  html.dark {
-    --line-color: rgba(255, 255, 255, 0.2);
-  }
+:root {
+  --accent: 160 24 24;
+  color-scheme: dark;
 }
 
-@layer components {
-  .borderBlack {
-    @apply border border-black/10;
-  }
-
-  .focus-ring {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:focus-visible:ring-primary-400 dark:focus-visible:ring-offset-dark;
-  }
-
-  .heading-gradient {
-    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent dark:from-primary-400 dark:to-secondary-400;
-  }
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background: #050505;
+  color: #d9d1c1;
 }
 
-@layer utilities {
-  .dark\:bg-white\/8 {
-    background-color: rgba(255, 255, 255, 0.08);
-  }
+body {
+  font-family: var(--font-ui), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgb(var(--accent) / 0.6);
+  color: #efe8d8;
+}
+
+/* thin dark scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3b3737 transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #3b3737;
+  border-radius: 8px;
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+  z-index: 9999;
+}
+
+.crt {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.025) 0px,
+    rgba(255, 255, 255, 0.025) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.glass {
+  background: rgba(10, 9, 9, 0.78);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+}
+
+input[type="range"] {
+  accent-color: rgb(var(--accent));
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 4px;
+  background: #3b3737;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgb(var(--accent));
+  box-shadow: 0 0 8px rgb(var(--accent) / 0.6);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(var(--accent));
+}
+input[type="range"]::-moz-range-progress {
+  background: rgb(var(--accent));
+  height: 4px;
+  border-radius: 4px;
 }
