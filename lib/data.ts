@@ -1,79 +1,74 @@
-import React from "react";
-import { CgWorkAlt } from "react-icons/cg";
-import { FaCode } from "react-icons/fa";
-import { SiLaravel } from "react-icons/si";
-import { LuGraduationCap } from "react-icons/lu";
-
-export const links = [
-  {
-    name: "Home",
-    hash: "#home",
-  },
-  {
-    name: "About",
-    hash: "#about",
-  },
-  {
-    name: "Projects",
-    hash: "#projects",
-  },
-  {
-    name: "Skills",
-    hash: "#skills",
-  },
-  {
-    name: "Experience",
-    hash: "#experience",
-  },
-
-  {
-    name: "Contact",
-    hash: "#contact",
-  },
-] as const;
+export const profile = {
+  name: "Yassine Kooli",
+  handle: "yassine",
+  role: "Laravel Developer",
+  location: "Sousse, Tunisia",
+  email: "kooli.yassine0@gmail.com",
+  avatar: "/images/profile.png",
+  cv: "/CV.pdf",
+  yearsOfExperience: "4+",
+  tagline: "Building scalable web applications with Laravel, Filament, Livewire and modern PHP.",
+  bio: [
+    "Laravel developer with 4+ years of hands-on experience building scalable web applications — from admin panels and inventory systems to booking tools and SaaS platforms. I've delivered solutions for enterprise clients and local businesses, working across the full lifecycle from requirements to deployment.",
+    "My stack centers on the Laravel ecosystem: Filament for powerful admin interfaces, Livewire for reactive frontends, Alpine.js for lightweight interactivity, and Tailwind CSS for clean UI. I'm comfortable with REST API design, MySQL/PostgreSQL, Redis, queue jobs, and real-time features via WebSockets.",
+    "I write clean, maintainable code following SOLID principles and Laravel best practices. I thrive in Agile teams, enjoy collaborating with designers and stakeholders, and take ownership from architecture decisions to production performance tuning.",
+  ],
+  socials: [
+    { name: "GitHub", url: "https://github.com/Yassine-Kooli" },
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/yassine-kooli/" },
+    { name: "Upwork", url: "https://www.upwork.com/freelancers/~01e5595c71628fd231?viewMode=1" },
+  ],
+} as const;
 
 export const experiencesData = [
   {
-    titleKey: "experience.currentJob.title",
-    locationKey: "experience.currentJob.location",
-    descriptionKey: "experience.currentJob.description",
-    icon: React.createElement(SiLaravel),
-    dateKey: "experience.currentJob.date",
+    slug: "satoripop-laravel-developer",
+    title: "Laravel Developer",
+    location: "Satoripop, Sousse",
+    date: "August 2024 - Present",
+    description:
+      "Develop and maintain enterprise-grade web applications using Laravel, Filament, Livewire, and Alpine.js. Build internal dashboards in Agile teams, reducing feature delivery time by 20%. Refactor legacy codebases, improving maintainability and test coverage. Collaborate with designers, PMs, and clients to ship user-focused features.",
   },
   {
-    titleKey: "experience.internship2024.title",
-    locationKey: "experience.internship2024.location",
-    descriptionKey: "experience.internship2024.description",
-    icon: React.createElement(CgWorkAlt),
-    dateKey: "experience.internship2024.date",
+    slug: "satoripop-intern-2024",
+    title: "Web Developer Intern",
+    location: "Satoripop, Sousse",
+    date: "January 2024 - May 2024",
+    description:
+      "Built a Laravel-based admin panel for a final-year project using Filament PHP, streamlining backend workflows. Mastered company processes, delivering a scalable application under tight deadlines.",
   },
   {
-    titleKey: "experience.freelance.title",
-    locationKey: "experience.freelance.location",
-    descriptionKey: "experience.freelance.description",
-    icon: React.createElement(FaCode),
-    dateKey: "experience.freelance.date",
+    slug: "freelance",
+    title: "Freelance Web Developer",
+    location: "Ksar Hellal, Tunisia",
+    date: "2020 - 2024",
+    description:
+      "Developed and deployed 10+ full-stack Laravel applications, including booking systems, CRMs, and inventory tools, for local businesses. Managed end-to-end project lifecycles, from requirements gathering to QA and support. Optimized performance using MySQL and REST APIs.",
   },
   {
-    titleKey: "experience.firstIntern.title",
-    locationKey: "experience.firstIntern.location",
-    descriptionKey: "experience.firstIntern.description",
-    icon: React.createElement(CgWorkAlt),
-    dateKey: "experience.firstIntern.date",
+    slug: "satoripop-intern-2022",
+    title: "Web Development Intern",
+    location: "Satoripop, Sousse",
+    date: "Summer 2022",
+    description:
+      "Contributed to two internal PHP projects using Laravel and CodeIgniter, implementing MVC patterns and REST APIs. Streamlined version control with Git, enhancing team collaboration. Improved debugging efficiency, reducing issue resolution time by 15%.",
   },
   {
-    titleKey: "experience.education.title",
-    locationKey: "experience.education.location",
-    descriptionKey: "experience.education.description",
-    icon: React.createElement(LuGraduationCap),
-    dateKey: "experience.education.date",
+    slug: "isg-sousse",
+    title: "Bachelor's in Business Intelligence",
+    location: "ISG Sousse, Tunisia",
+    date: "2020 - 2024",
+    description:
+      "Graduated with honors, focusing on data-driven solutions. Relevant coursework: Data Analytics, Database Systems. Developed a strong foundation in data analysis, system design, and decision support systems.",
   },
 ] as const;
 
 export const projectsData = [
   {
+    slug: "multi-tenant-saas",
     title: "Multi-Tenant SaaS Platform",
     type: "SaaS",
+    image: "/images/saas-platform.svg",
     description:
       "Full multi-tenant architecture with isolated databases per tenant, automated provisioning, custom domain routing, and dynamic feature flags. Built for scale from day one.",
     features: [
@@ -85,8 +80,10 @@ export const projectsData = [
     link: "",
   },
   {
+    slug: "ecommerce-platform",
     title: "Enterprise E-Commerce Platform",
     type: "E-Commerce",
+    image: "/images/ecommerce-platform.svg",
     description:
       "Multi-vendor marketplace with advanced inventory management, real-time stock tracking, and integrated payment gateways. Handles complex discount logic, order lifecycle, and automated email campaigns.",
     features: [
@@ -98,8 +95,10 @@ export const projectsData = [
     link: "",
   },
   {
+    slug: "admin-panel-cms",
     title: "Advanced Admin Panel & CMS",
     type: "Admin Panel",
+    image: "/images/admin-panel-cms.svg",
     description:
       "Full-featured CMS built on Laravel Filament with granular RBAC, content scheduling, media management, and SEO tooling. Includes audit logs, automated backups, and multi-language content.",
     features: [
@@ -111,8 +110,10 @@ export const projectsData = [
     link: "",
   },
   {
+    slug: "project-management",
     title: "Real-Time Project Management Tool",
     type: "SaaS",
+    image: "/images/project-management.svg",
     description:
       "Team collaboration tool with live Kanban boards, time tracking, and file sharing. WebSockets push updates instantly across all connected clients — no polling.",
     features: [
@@ -124,8 +125,10 @@ export const projectsData = [
     link: "",
   },
   {
+    slug: "financial-system",
     title: "Financial Management System",
     type: "Internal Tool",
+    image: "/images/financial-system.svg",
     description:
       "Invoice generation, expense tracking, tax calculation, and recurring billing in one place. Integrated with external accounting APIs and automated payment reminder sequences.",
     features: [
@@ -137,8 +140,10 @@ export const projectsData = [
     link: "",
   },
   {
+    slug: "learning-management",
     title: "Learning Management System",
     type: "EdTech",
+    image: "/images/learning-management.svg",
     description:
       "Course platform with video streaming, progress tracking, interactive quizzes, and automated certificate generation. Students get real-time notifications for new content and discussion replies.",
     features: [
@@ -151,115 +156,12 @@ export const projectsData = [
   },
 ] as const;
 
-export const skillsData = [
-  "PHP",
-  "Laravel",
-  "Livewire",
-  "Filament",
-  "Alpine.js",
-  "Tailwind CSS",
-  "MySQL",
-  "PostgreSQL",
-  "Redis",
-  "Elasticsearch",
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "Blade Templates",
-  "Eloquent ORM",
-  "Laravel Nova",
-  "Laravel Jetstream",
-  "Laravel Breeze",
-  "Laravel Fortify",
-  "Laravel Sanctum",
-  "Laravel Passport",
-  "Laravel Horizon",
-  "Laravel Echo",
-  "Laravel Telescope",
-  "Laravel Octane",
-  "Multi-Tenancy",
-  "Spatie Packages",
-  "PHPUnit",
-  "Pest PHP",
-  "Git",
-  "CI/CD",
-  "Docker",
-  "AWS",
-  "DigitalOcean",
-  "REST API",
-  "Redis",
-  "GraphQL",
-  "WebSockets",
-  "Queue Jobs",
-  "Task Scheduling",
-  "Payment Gateways",
-  "Stripe",
-  "PayPal",
-  "Inertia.js",
-  "Vue.js",
-  "React",
-  "TALL Stack",
-  "TDD",
-  "Design Patterns",
-  "Microservices",
-] as const;
-
-export const testimonialData = [
-  {
-    name: "Sarah Johnson",
-    title: "CTO at FinanceFlow SaaS",
-    text: "Yassine built our multi-tenant financial platform from the ground up. His expertise in Laravel's multi-tenancy architecture and payment integrations was exceptional. The platform handles thousands of users seamlessly.",
-    image: "/images/testimonial1.jpg",
-  },
-  {
-    name: "Ahmed Hassan",
-    title: "Founder at EduTech Solutions",
-    text: "Our learning management system required complex video processing and real-time features. Yassine delivered a robust solution using Laravel Echo and WebSockets that exceeded our performance expectations.",
-    image: "/images/testimonial2.jpg",
-  },
-  {
-    name: "Maria Garcia",
-    title: "VP of Engineering at RetailMax",
-    text: "Yassine transformed our e-commerce infrastructure with advanced inventory management and multi-vendor capabilities. His Laravel Filament admin panels are incredibly powerful yet user-friendly.",
-    image: "/images/testimonial3.jpg",
-  },
-] as const;
-
-export const blogData = [
-  {
-    title: "Building Multi-Tenant SaaS Applications with Laravel",
-    excerpt: "A comprehensive guide to implementing multi-tenancy in Laravel, covering tenant isolation, database strategies, and scaling considerations.",
-    date: "2024-01-15",
-    slug: "multi-tenant-saas-laravel",
-  },
-  {
-    title: "Advanced Laravel Filament: Custom Components & Workflows",
-    excerpt: "Explore advanced Filament techniques including custom form components, complex relationships, and automated workflows for enterprise applications.",
-    date: "2024-01-02",
-    slug: "advanced-laravel-filament",
-  },
-  {
-    title: "Real-Time Features with Laravel Echo & WebSockets",
-    excerpt: "Learn how to implement real-time notifications, live updates, and collaborative features using Laravel Echo, Pusher, and WebSockets.",
-    date: "2023-12-20",
-    slug: "laravel-echo-websockets",
-  },
-  {
-    title: "Laravel Performance Optimization: From Queries to Caching",
-    excerpt: "Master Laravel performance optimization techniques including query optimization, Redis caching, queue management, and Laravel Octane.",
-    date: "2023-12-05",
-    slug: "laravel-performance-optimization",
-  },
-  {
-    title: "Building Scalable APIs with Laravel Sanctum & Passport",
-    excerpt: "A deep dive into Laravel's authentication systems for APIs, comparing Sanctum and Passport for different use cases and scaling strategies.",
-    date: "2023-11-18",
-    slug: "laravel-api-authentication",
-  },
-  {
-    title: "The Modern Laravel Stack: TALL + Inertia.js",
-    excerpt: "Comparing and combining the TALL stack with Inertia.js for building modern, reactive web applications with Laravel backends.",
-    date: "2023-11-01",
-    slug: "modern-laravel-stack",
-  },
-] as const;
+export const skillsData = {
+  Backend: ["PHP", "Laravel", "Eloquent ORM", "REST API", "GraphQL", "Queue Jobs", "Task Scheduling", "WebSockets", "Multi-Tenancy", "Microservices"],
+  "Laravel ecosystem": ["Filament", "Livewire", "Nova", "Jetstream", "Breeze", "Fortify", "Sanctum", "Passport", "Horizon", "Echo", "Telescope", "Octane", "Spatie Packages"],
+  Frontend: ["HTML", "CSS", "JavaScript", "Alpine.js", "Tailwind CSS", "Blade", "Inertia.js", "Vue.js", "React"],
+  Data: ["MySQL", "PostgreSQL", "Redis", "Elasticsearch"],
+  "DevOps & tooling": ["Git", "CI/CD", "Docker", "AWS", "DigitalOcean"],
+  Payments: ["Stripe", "PayPal"],
+  Practices: ["TDD", "PHPUnit", "Pest PHP", "Design Patterns", "SOLID", "Agile"],
+} as const;
