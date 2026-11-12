@@ -24,10 +24,12 @@
     "react-rnd": "^10.5.3",
     "resend": "^6.38.0",
     "tailwindcss": "^3.3.6",
+    "three": "0.186.1",
     "typescript": "^5.3.3",
     "zustand": "^5.0.15"
   },
   "devDependencies": {
+    "@types/three": "0.186.0",
     "eslint": "^10.14.0"
   },
   "overrides": {

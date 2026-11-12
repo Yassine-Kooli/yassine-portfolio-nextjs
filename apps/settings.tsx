@@ -45,7 +45,7 @@ export default function Settings({ props }: AppProps) {
                         sys.wallpaper === w.id ? "border-accent" : "border-transparent hover:border-ash-600",
                       )}
                     >
-                      <Wallpaper id={w.id} />
+                      <Wallpaper id={w.id} preview />
                     </div>
                     <div className="mt-1.5 text-xs text-ash-300">{w.label}</div>
                   </button>

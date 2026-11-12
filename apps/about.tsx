@@ -1,11 +1,18 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
+import { animate, motion } from "framer-motion";
 import { LuBriefcase, LuBarChart3, LuDownload, LuExternalLink, LuGithub, LuGraduationCap, LuLinkedin, LuMail, LuMapPin, LuTerminal } from "react-icons/lu";
 import { educationData, experiencesData, languagesData, profile, projectsData, skillsData } from "@/lib/data";
 import { HOME } from "@/lib/fs";
 import { openPath } from "@/lib/open";
+import { accents, useSystem } from "@/store/system";
 import { useWindows } from "@/store/windows";
+
+// The 3D core is only loaded when the About app is opened
+const Orb = dynamic(() => import("@/components/three/orb"), { ssr: false, loading: () => null });
 
 const CORE_SKILLS = ["Analytics & BI", "Databases", "Data integration & automation", "Visualisation"] as const;
 const SOCIAL_ICONS: Record<string, React.ComponentType<{ size?: number }>> = {
@@ -13,13 +20,48 @@ const SOCIAL_ICONS: Record<string, React.ComponentType<{ size?: number }>> = {
   LinkedIn: LuLinkedin,
 };
 
+/** Counts from 0 to the number in `value` once mounted. Non-numeric values render as-is. */
+function CountUp({ value }: { value: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const target = parseFloat(value);
+  const numeric = !Number.isNaN(target);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !numeric) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.textContent = value;
+      return;
+    }
+    const controls = animate(0, target, {
+      duration: 1.1,
+      ease: "easeOut",
+      onUpdate: (v) => {
+        el.textContent = Math.round(v).toString();
+      },
+    });
+    return () => controls.stop();
+  }, [value, target, numeric]);
+
+  return <span ref={ref}>{numeric ? "" : value}</span>;
+}
+
+const reveal = {
+  initial: { opacity: 0, y: 14 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-40px" },
+  transition: { duration: 0.5, ease: "easeOut" },
+} as const;
+
 export default function About() {
   const { open } = useWindows.getState();
+  const accent = useSystem((s) => s.accent);
 
   return (
     <div className="h-full overflow-y-auto bg-crypt text-bone">
       {/* Hero */}
-      <header className="border-b border-white/5 px-6 pb-8 pt-10 sm:px-10">
+      <header className="relative overflow-hidden border-b border-white/5 px-6 pb-8 pt-10 sm:px-10">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
         <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
           <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl ring-1 ring-white/10">
             <Image src={profile.avatar} alt={profile.name} fill sizes="96px" className="object-cover" priority />
@@ -30,6 +72,9 @@ export default function About() {
             <p className="mt-2 flex items-center gap-1.5 text-sm text-ash-300">
               <LuMapPin size={14} /> {profile.location}
             </p>
+          </div>
+          <div className="ml-auto hidden h-32 w-32 shrink-0 md:block">
+            <Orb accent={accents[accent].rgb} className="h-full w-full" />
           </div>
         </div>
 
@@ -55,6 +100,7 @@ export default function About() {
             );
           })}
         </div>
+        </motion.div>
       </header>
 
       {/* Key figures (all from the CV) */}
@@ -63,11 +109,19 @@ export default function About() {
           [profile.yearsOfExperience, "years building data-driven apps"],
           [`${projectsData.length}`, "production products"],
           [`${educationData.length}`, "degrees (BI and software engineering)"],
-        ].map(([n, l]) => (
-          <div key={l} className="flex flex-col-reverse border-r border-white/5 px-2 py-5 last:border-r-0">
+        ].map(([n, l], i) => (
+          <motion.div
+            key={l}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 + i * 0.1, duration: 0.4 }}
+            className="flex flex-col-reverse border-r border-white/5 px-2 py-5 last:border-r-0"
+          >
             <dt className="text-xs text-ash-400">{l}</dt>
-            <dd className="font-display text-2xl font-semibold text-parchment">{n}</dd>
-          </div>
+            <dd className="font-display text-2xl font-semibold tabular-nums text-parchment">
+              <CountUp value={String(n)} />
+            </dd>
+          </motion.div>
         ))}
       </dl>
 
@@ -111,12 +165,12 @@ export default function About() {
           <section>
             <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-ash-400">Selected production projects</h2>
             <div className="grid gap-3 sm:grid-cols-2">
-              {projectsData.map((p) => {
+              {projectsData.map((p, i) => {
                 const Tag = p.link ? "a" : "div";
                 const linkProps = p.link ? { href: p.link, target: "_blank", rel: "noreferrer" } : {};
                 return (
+                <motion.div key={p.slug} {...reveal} transition={{ ...reveal.transition, delay: (i % 2) * 0.08 }}>
                 <Tag
-                  key={p.slug}
                   {...linkProps}
                   className="group rounded-xl border border-white/5 bg-white/[0.02] p-4 transition hover:border-accent/50 hover:bg-white/[0.04]"
                 >
@@ -134,6 +188,7 @@ export default function About() {
                     ))}
                   </div>
                 </Tag>
+                </motion.div>
                 );
               })}
             </div>

@@ -17,6 +17,7 @@ const items: Item[] = [
   { key: "dashboard", label: "BI Dashboard", app: "dashboard", open: () => useWindows.getState().open("dashboard") },
   { key: "projects", label: "Projects", icon: LuFolder, open: () => openPath(`${HOME}/projects`) },
   { key: "cv", label: "CV.pdf", icon: LuFileText, open: () => openPath(`${HOME}/CV.pdf`) },
+  { key: "arcade", label: "Arcade", app: "arcade", open: () => useWindows.getState().open("arcade") },
   { key: "terminal", label: "Terminal", app: "terminal", open: () => useWindows.getState().open("terminal") },
   { key: "mail", label: "Contact", app: "mail", open: () => useWindows.getState().open("mail") },
 ];

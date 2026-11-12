@@ -4,7 +4,7 @@ import { persist, createJSONStorage } from "zustand/middleware";
 export const BOOTED_KEY = "yassineos-booted";
 
 export type Phase = "boot" | "login" | "desktop" | "off";
-export type WallpaperId = "graphite" | "midnight" | "slate";
+export type WallpaperId = "bars" | "graphite" | "midnight" | "slate";
 export type AccentId = "indigo" | "teal" | "sky" | "slate";
 
 export const accents: Record<AccentId, { label: string; rgb: string }> = {
@@ -14,10 +14,11 @@ export const accents: Record<AccentId, { label: string; rgb: string }> = {
   slate: { label: "Slate", rgb: "148 163 184" },
 };
 
-const DEFAULTS = { wallpaper: "graphite", accent: "indigo" } as const;
+const DEFAULTS = { wallpaper: "bars", accent: "indigo" } as const;
 
 // Bump when the persisted shape changes. Older saved settings are reset to the defaults above.
-const SETTINGS_VERSION = 3;
+// v4: 3D data-bars wallpaper became the default.
+const SETTINGS_VERSION = 4;
 
 export type Notification = { id: number; title: string; body?: string };
 

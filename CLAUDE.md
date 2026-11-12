@@ -14,14 +14,16 @@ No test suite configured.
 
 ## Stack
 
-Next.js 16 (App Router) · TypeScript · Tailwind CSS · Framer Motion · Zustand · react-rnd · Resend (email)
+Next.js 16 (App Router) · TypeScript · Tailwind CSS · Framer Motion · Three.js (pinned `three@0.186.1`, raw API, no R3F) · Zustand · react-rnd · Resend (email)
 
 ## Architecture
 
 **YassineOS** — the portfolio is a desktop-style workspace for a Business Intelligence Analyst & Developer. Professional tone, no gothic or novelty theming. English only. `app/page.tsx` renders `os/os.tsx`, which switches between phases (`boot` → `login` → `desktop`, plus `off`) stored in `store/system.ts`.
 
-- `os/` — shell: boot/lock/power-off screens, `desktop.tsx` (wallpaper, top bar, dock, launcher, icons, context menu), `window.tsx` (react-rnd frame), `mobile-shell.tsx` (<768px: home-screen grid, top window shown full screen), `wallpaper.tsx` (CSS-only wallpapers: graphite, midnight, slate grid).
-- `apps/` — one component per app, all taking `AppProps` (`windowId`, `props`, `active`). Current apps: About, BI Dashboard, Terminal, Files, Contact, Settings (plus Text Editor and Document Viewer, not launchable). Register new apps in `lib/apps.ts` (metadata: title, icon, size, singleton) **and** `os/app-view.tsx` (component map).
+- `os/` — shell: boot/lock/power-off screens, `desktop.tsx` (wallpaper, top bar, dock, launcher, icons, context menu), `window.tsx` (react-rnd frame), `mobile-shell.tsx` (<768px: home-screen grid, top window shown full screen), `wallpaper.tsx` (default `bars` = 3D Three.js wallpaper, loaded with `next/dynamic`; CSS wallpapers graphite, midnight, slate grid; `preview` prop renders the CSS fallback only).
+- `components/three/` — Three.js pieces. `use-three-scene.ts` is the shared hook (canvas sizing, rAF loop that only runs while visible/active/tab in foreground, GPU cleanup on unmount). `bars-scene.tsx` (wallpaper), `orb.tsx` (About hero). Load these with `next/dynamic` and `ssr: false` so three stays out of the main bundle.
+- `apps/` — one component per app, all taking `AppProps` (`windowId`, `props`, `active`). Current apps: About, BI Dashboard, Arcade, Terminal, Files, Contact, Settings (plus Text Editor and Document Viewer, not launchable). Register new apps in `lib/apps.ts` (metadata: title, icon, size, singleton) **and** `os/app-view.tsx` (component map).
+- `apps/arcade/` — game hub with tabs: `stack-3d.tsx` (Three.js tower game, lazy-loaded), `snake.tsx`, `minesweeper.tsx`. Games take `active` and pause when their window is not focused. Games are for fun only: keep them out of the CV-based content and out of any claims about the candidate.
 - `apps/dashboard.tsx` — BI dashboard built with plain SVG/HTML (no chart library). Uses the reference palette from the dataviz skill (`references/palette.md`, dark chart surface). Every panel has a table view. Data comes from `lib/sales-data.ts`, which is **illustrative sample data**, labelled as such in the UI.
 - `store/windows.ts` — window manager: open/close/focus/minimize/maximize, z-order. `open(appId, { props })` dedupes singletons and same-`path` windows.
 - `store/system.ts` — phase, wallpaper and accent settings (persisted to localStorage, versioned; bump `SETTINGS_VERSION` when the shape changes), notifications.

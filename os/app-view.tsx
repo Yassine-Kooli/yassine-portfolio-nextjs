@@ -9,6 +9,7 @@ import Files from "@/apps/files";
 import TextViewer from "@/apps/text-viewer";
 import PdfViewer from "@/apps/pdf-viewer";
 import Dashboard from "@/apps/dashboard";
+import Arcade from "@/apps/arcade/arcade";
 import Mail from "@/apps/mail";
 import Settings from "@/apps/settings";
 
@@ -17,6 +18,7 @@ export type AppProps = { windowId: string; props: WindowProps; active: boolean }
 const registry: Record<AppId, ComponentType<AppProps>> = {
   about: About,
   dashboard: Dashboard,
+  arcade: Arcade,
   terminal: Terminal,
   files: Files,
   text: TextViewer,
