@@ -2,14 +2,13 @@
 
 import { useState } from "react";
 import clsx from "clsx";
-import { LuInfo, LuMonitor, LuSparkles } from "react-icons/lu";
+import { LuInfo, LuMonitor } from "react-icons/lu";
 import { accents, useSystem, type AccentId } from "@/store/system";
 import Wallpaper, { wallpapers } from "@/os/wallpaper";
 import type { AppProps } from "@/os/app-view";
 
 const tabs = [
   { id: "appearance", label: "Appearance", icon: LuMonitor },
-  { id: "effects", label: "Effects", icon: LuSparkles },
   { id: "about", label: "About", icon: LuInfo },
 ] as const;
 
@@ -21,7 +20,7 @@ export default function Settings({ props }: AppProps) {
 
   return (
     <div className="flex h-full bg-ash-900 text-sm text-bone">
-      <aside className="w-48 shrink-0 space-y-0.5 border-r border-black/50 bg-[#0f0e0e] p-2">
+      <aside className="w-48 shrink-0 space-y-0.5 border-r border-white/5 bg-crypt p-2">
         {tabs.map(({ id, label, icon: Icon }) => (
           <button
             key={id}
@@ -37,7 +36,7 @@ export default function Settings({ props }: AppProps) {
         {tab === "appearance" && (
           <>
             <Section title="Wallpaper">
-              <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+              <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
                 {wallpapers.map((w) => (
                   <button key={w.id} onClick={() => sys.set({ wallpaper: w.id })} className="text-left">
                     <div
@@ -46,7 +45,7 @@ export default function Settings({ props }: AppProps) {
                         sys.wallpaper === w.id ? "border-accent" : "border-transparent hover:border-ash-600",
                       )}
                     >
-                      <Wallpaper id={w.id} fog={false} />
+                      <Wallpaper id={w.id} />
                     </div>
                     <div className="mt-1.5 text-xs text-ash-300">{w.label}</div>
                   </button>
@@ -70,28 +69,21 @@ export default function Settings({ props }: AppProps) {
           </>
         )}
 
-        {tab === "effects" && (
-          <Section title="Atmosphere">
-            <Toggle label="Film grain" hint="A fine layer of noise over everything" value={sys.grain} onChange={(v) => sys.set({ grain: v })} />
-            <Toggle label="Drifting fog" hint="Animated fog on the wallpaper" value={sys.fog} onChange={(v) => sys.set({ fog: v })} />
-            <Toggle label="CRT scanlines" hint="Old-monitor lines in the Terminal" value={sys.crt} onChange={(v) => sys.set({ crt: v })} />
-          </Section>
-        )}
-
         {tab === "about" && (
           <div className="flex flex-col items-center pt-6 text-center">
-            <div className="font-goth text-6xl text-parchment">YassineOS</div>
-            <div className="mt-1 font-display tracking-[0.3em] text-accent">1.0 · GHOST</div>
+            <div className="font-display text-4xl font-semibold tracking-tight text-parchment">YassineOS</div>
+            <div className="mt-1 text-sm text-accent">Version 1.0</div>
+            <p className="mt-4 max-w-sm text-xs text-ash-400">
+              A desktop-style portfolio. Read it like a CV, or explore it like a workspace.
+            </p>
             <dl className="mt-8 grid w-full max-w-sm grid-cols-2 gap-y-2 text-left">
               {[
-                ["Kernel", "6.6.6-doom"],
-                ["Desktop", "Necropolis (GNOME-ish)"],
-                ["Shell", "ysh 1.0"],
-                ["Built with", "Next.js · TypeScript · Tailwind"],
+                ["Framework", "Next.js 16 · React 18"],
+                ["Language", "TypeScript"],
+                ["Styling", "Tailwind CSS"],
                 ["Windowing", "react-rnd · Zustand"],
                 ["Motion", "Framer Motion"],
-                ["Mail", "Resend"],
-                ["Music", "Spotify embed"],
+                ["Contact form", "Resend"],
               ].map(([k, v]) => (
                 <div key={k} className="contents">
                   <dt className="text-ash-500">{k}</dt>
@@ -109,22 +101,8 @@ export default function Settings({ props }: AppProps) {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-8">
-      <h2 className="mb-3 font-display text-xs tracking-[0.25em] text-ash-400">{title.toUpperCase()}</h2>
+      <h2 className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-ash-400">{title}</h2>
       {children}
     </section>
-  );
-}
-
-function Toggle({ label, hint, value, onChange }: { label: string; hint: string; value: boolean; onChange: (v: boolean) => void }) {
-  return (
-    <button onClick={() => onChange(!value)} className="mb-2 flex w-full items-center justify-between rounded-xl bg-black/30 px-4 py-3 text-left">
-      <span>
-        <span className="block">{label}</span>
-        <span className="block text-xs text-ash-500">{hint}</span>
-      </span>
-      <span className={clsx("relative h-6 w-11 rounded-full transition", value ? "bg-accent" : "bg-ash-700")}>
-        <span className={clsx("absolute top-1 h-4 w-4 rounded-full bg-parchment transition-all", value ? "left-6" : "left-1")} />
-      </span>
-    </button>
   );
 }

@@ -13,7 +13,7 @@ export default function PowerOff() {
       transition={{ duration: 1 }}
       className="absolute inset-0 flex flex-col items-center justify-center gap-8 bg-black"
     >
-      <p className="font-display text-sm tracking-[0.3em] text-ash-500">THE LIGHT HAS GONE OUT</p>
+      <p className="font-display text-sm tracking-[0.16em] text-ash-500">SYSTEM POWERED OFF</p>
       <button
         onClick={() => useSystem.getState().setPhase("boot")}
         className="grid h-16 w-16 place-items-center rounded-full border border-ash-700 text-ash-400 transition hover:border-accent hover:text-accent"

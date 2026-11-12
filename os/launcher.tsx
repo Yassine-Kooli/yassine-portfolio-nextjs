@@ -11,10 +11,17 @@ import AppIcon from "@/os/app-icon";
 export default function Launcher() {
   const open = useSystem((s) => s.launcherOpen);
   const [q, setQ] = useState("");
+  const [wasOpen, setWasOpen] = useState(open);
   const close = () => useSystem.getState().set({ launcherOpen: false });
 
+  // Clear the search when the launcher closes (adjusting state during render, not in an effect)
+  if (open !== wasOpen) {
+    setWasOpen(open);
+    if (!open) setQ("");
+  }
+
   useEffect(() => {
-    if (!open) return setQ("");
+    if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -66,7 +73,7 @@ export default function Launcher() {
                 <span className="font-display text-sm tracking-wide text-bone">{a.title}</span>
               </button>
             ))}
-            {!results.length && <p className="col-span-full text-center text-ash-400">Nothing answers from the dark.</p>}
+            {!results.length && <p className="col-span-full text-center text-ash-400">No matching apps.</p>}
           </motion.div>
         </motion.div>
       )}

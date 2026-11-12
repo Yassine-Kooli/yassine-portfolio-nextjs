@@ -6,15 +6,11 @@ import { projectsData } from "@/lib/data";
 import { useSystem } from "@/store/system";
 
 const LINES: [string, string][] = [
-  ["", "YassineOS 1.0 (Ghost) — kernel 6.6.6-doom x86_64"],
+  ["", "YassineOS 1.0 — kernel 6.6.6 x86_64"],
   ["OK", "Started Kernel Logging Service."],
-  ["OK", "Mounted /dev/sorrow."],
-  ["OK", "Reached target Eternal Darkness."],
-  ["OK", "Started PHP-FPM 8.3 (the Laravel engine)."],
+  ["OK", "Mounted /home/yassine."],
+  ["OK", "Started PHP-FPM 8.3 (Laravel runtime)."],
   ["OK", `Loaded ${projectsData.length} projects from /home/yassine/projects.`],
-  ["OK", "Tuned guitars to D standard."],
-  ["OK", "Started Fog Generator Daemon."],
-  ["WARN", "Light mode not found. Continuing in darkness."],
   ["OK", "Started Window Manager."],
   ["OK", "Reached target Graphical Interface."],
 ];
@@ -71,7 +67,7 @@ export default function BootScreen() {
           transition={{ duration: 1.4 }}
           className="flex h-full flex-col items-center justify-center gap-6"
         >
-          <h1 className="animate-flicker font-goth text-6xl text-parchment drop-shadow-[0_0_24px_rgba(160,24,24,.45)] sm:text-8xl">YassineOS</h1>
+          <h1 className="font-display text-5xl font-semibold tracking-tight text-parchment sm:text-7xl">YassineOS</h1>
           <div className="h-[2px] w-48 overflow-hidden bg-ash-800">
             <motion.div className="h-full bg-accent" initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 2 }} />
           </div>

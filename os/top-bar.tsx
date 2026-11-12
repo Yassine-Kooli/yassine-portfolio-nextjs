@@ -3,10 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
-import { LuLock, LuMusic, LuPower, LuRotateCcw, LuWifi } from "react-icons/lu";
+import { LuLock, LuPower, LuRotateCcw, LuWifi } from "react-icons/lu";
 import { apps } from "@/lib/apps";
-import { playlist } from "@/lib/playlist";
-import { useMusic } from "@/store/music";
 import { useSystem } from "@/store/system";
 import { useWindows } from "@/store/windows";
 import { useClock } from "@/os/use-clock";
@@ -15,8 +13,6 @@ export default function TopBar() {
   const now = useClock();
   const activeApp = useWindows((s) => s.windows.find((w) => w.id === s.activeId)?.appId);
   const launcherOpen = useSystem((s) => s.launcherOpen);
-  const index = useMusic((s) => s.index);
-  const playing = useMusic((s) => s.playing);
   const [menu, setMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -30,7 +26,6 @@ export default function TopBar() {
   const power = (action: "lock" | "restart" | "off") => {
     setMenu(false);
     const sys = useSystem.getState();
-    useMusic.getState().pause();
     if (action === "lock") return sys.setPhase("login");
     useWindows.getState().closeAll();
     try {
@@ -38,8 +33,6 @@ export default function TopBar() {
     } catch {}
     sys.setPhase(action === "restart" ? "boot" : "off");
   };
-
-  const track = playlist[index];
 
   return (
     <header className="absolute inset-x-0 top-0 z-[5000] flex h-8 items-center justify-between bg-black/90 px-2 text-[13px] text-bone">
@@ -59,15 +52,6 @@ export default function TopBar() {
       </div>
 
       <div ref={menuRef} className="relative flex items-center gap-1">
-        {track && (
-          <button
-            onClick={() => useWindows.getState().open("music")}
-            className="hidden max-w-[220px] items-center gap-2 rounded-full px-3 py-0.5 text-ash-300 transition hover:bg-white/10 md:flex"
-          >
-            <LuMusic size={13} className={clsx(playing && "animate-pulse text-accent")} />
-            <span className="truncate">{playing ? `${track.artist} — ${track.title}` : "Paused"}</span>
-          </button>
-        )}
         <button onClick={() => setMenu((m) => !m)} className={clsx("flex items-center gap-2.5 rounded-full px-3 py-1 transition hover:bg-white/10", menu && "bg-white/15")}>
           <LuWifi size={14} />
           <LuPower size={14} />

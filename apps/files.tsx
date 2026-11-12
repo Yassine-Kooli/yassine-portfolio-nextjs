@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import clsx from "clsx";
-import { LuArrowUp, LuBriefcase, LuChevronLeft, LuChevronRight, LuFileAudio, LuFileText, LuFolder, LuHome, LuMusic, LuFile, LuFolderOpen } from "react-icons/lu";
+import { LuArrowUp, LuBriefcase, LuChevronLeft, LuChevronRight, LuFileText, LuFolder, LuHome, LuFile, LuFolderOpen, LuGraduationCap, LuDatabase } from "react-icons/lu";
 import { getNode, HOME, joinPath, normalize, prettyPath, type FsNode } from "@/lib/fs";
 import { openPath } from "@/lib/open";
 import { useWindows } from "@/store/windows";
@@ -12,13 +12,13 @@ const places = [
   { label: "Home", path: HOME, icon: LuHome },
   { label: "Projects", path: `${HOME}/projects`, icon: LuFolderOpen },
   { label: "Experience", path: `${HOME}/experience`, icon: LuBriefcase },
-  { label: "Music", path: `${HOME}/music`, icon: LuMusic },
+  { label: "Education", path: `${HOME}/education`, icon: LuGraduationCap },
+  { label: "Data", path: `${HOME}/data`, icon: LuDatabase },
 ];
 
 function NodeIcon({ node, size = 40 }: { node: FsNode; size?: number }) {
-  if (node.type === "dir") return <LuFolder size={size} strokeWidth={1.3} className="text-[#b09a78]" />;
-  if (node.kind === "pdf") return <LuFile size={size} strokeWidth={1.3} className="text-[#c96b5b]" />;
-  if (node.kind === "audio") return <LuFileAudio size={size} strokeWidth={1.3} className="text-[#b07ab8]" />;
+  if (node.type === "dir") return <LuFolder size={size} strokeWidth={1.3} className="text-[#8fa3bf]" />;
+  if (node.kind === "pdf") return <LuFile size={size} strokeWidth={1.3} className="text-accent" />;
   return <LuFileText size={size} strokeWidth={1.3} className="text-bone" />;
 }
 
@@ -114,7 +114,7 @@ export default function Files({ windowId, props }: AppProps) {
               <span className="line-clamp-2 break-all text-xs">{node.name}</span>
             </button>
           ))}
-          {!items.length && <p className="col-span-full mt-10 text-center text-ash-500">This folder is as empty as the void.</p>}
+          {!items.length && <p className="col-span-full mt-10 text-center text-ash-500">This folder is empty.</p>}
         </div>
         <div className="border-t border-black/50 px-4 py-1.5 text-xs text-ash-500">
           {items.length} items · double-click to open

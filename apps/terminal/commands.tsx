@@ -1,14 +1,11 @@
 import type { ReactNode } from "react";
-import { experiencesData, profile, projectsData, skillsData } from "@/lib/data";
+import { educationData, experiencesData, languagesData, profile, projectsData, skillsData } from "@/lib/data";
 import { getNode, HOME, normalize, prettyPath, type FsNode } from "@/lib/fs";
 import { openPath } from "@/lib/open";
 import { apps, type AppId } from "@/lib/apps";
-import { playlist, sections } from "@/lib/playlist";
-import { useMusic } from "@/store/music";
 import { useSystem, type WallpaperId } from "@/store/system";
 import { useWindows } from "@/store/windows";
 import { wallpapers } from "@/os/wallpaper";
-import MatrixRain from "@/apps/terminal/matrix-rain";
 
 export type Ctx = {
   cwd: string;
@@ -28,41 +25,14 @@ const A = ({ href, children }: { href: string; children: ReactNode }) => (
   </a>
 );
 const Dim = ({ children }: { children: ReactNode }) => <span className="text-ash-500">{children}</span>;
-const H = ({ children }: { children: ReactNode }) => <div className="mt-1 font-bold text-parchment">{children}</div>;
-const Err = ({ children }: { children: ReactNode }) => <span className="text-[#d0584f]">{children}</span>;
+const H = ({ children }: { children: ReactNode }) => <div className="mt-1 font-semibold text-parchment">{children}</div>;
+const Err = ({ children }: { children: ReactNode }) => <span className="text-[#e0736b]">{children}</span>;
 
 function nodeLabel(n: FsNode) {
-  if (n.type === "dir") return <span className="font-bold text-[#8aa6b8]">{n.name}/</span>;
-  if (n.kind === "pdf") return <span className="text-[#c98a6b]">{n.name}</span>;
-  if (n.kind === "audio") return <span className="text-[#b07ab8]">{n.name}</span>;
+  if (n.type === "dir") return <span className="font-semibold text-[#8fa3bf]">{n.name}/</span>;
+  if (n.kind === "pdf") return <span className="text-accent">{n.name}</span>;
   return <span className="text-bone">{n.name}</span>;
 }
-
-const fortunes = [
-  "Your code compiles on the first try. Something is terribly wrong.",
-  "The fog will lift. The bugs will not.",
-  "Every merge conflict is a small funeral.",
-  "In the forest of legacy code, every tree is a god class.",
-  "Deprecated, like the summer.",
-  "A migration you forgot to run waits for you in production.",
-  "The night is long, and the queue workers are longer.",
-  "N+1 queries walk among us.",
-  "He who commits on Friday shall debug on Saturday.",
-];
-
-const SKULL = String.raw`
-      ______
-   .-"      "-.
-  /            \
- |              |
- |,  .-.  .-.  ,|
- | )(__/  \__)( |
- |/     /\     \|
- (_     ^^     _)
-  \__|IIIIII|__/
-   | \IIIIII/ |
-   \          /
-    '--------'`;
 
 const commands: Record<string, Command> = {
   help: {
@@ -80,58 +50,43 @@ const commands: Record<string, Command> = {
               </div>
             ))}
         </div>
-        <div className="mt-2 text-ash-500">Tab completes, ↑/↓ walks history, Ctrl+L clears. Some commands are hidden…</div>
+        <div className="mt-2 text-ash-500">Tab completes, ↑/↓ walks history, Ctrl+L clears.</div>
       </div>
     ),
   },
-  whoami: { desc: "Who is this", run: () => `${profile.handle} — ${profile.name}, ${profile.role} based in ${profile.location}.` },
+  whoami: { desc: "Who this is", run: () => `${profile.name} — ${profile.role}, ${profile.location}.` },
   about: {
-    desc: "A few words about me",
+    desc: "Professional summary",
     run: () => (
       <div className="space-y-2">
         {profile.bio.map((b, i) => (
           <p key={i}>{b}</p>
         ))}
-        <Dim>Tip: `open about` shows the profile window.</Dim>
+        <Dim>Tip: `open about` shows the full profile.</Dim>
       </div>
     ),
   },
   neofetch: {
-    desc: "System information",
+    desc: "Summary of this portfolio",
     run: () => {
       const mins = Math.floor((Date.now() - bootedAt) / 60000);
       const rows: [string, string][] = [
-        ["OS", "YassineOS 1.0 (Ghost) x86_64"],
-        ["Host", profile.name],
-        ["Kernel", "6.6.6-doom"],
-        ["Uptime", mins < 1 ? "just risen" : `${mins} min${mins > 1 ? "s" : ""}`],
-        ["Shell", "ysh 1.0"],
-        ["Resolution", `${window.innerWidth}x${window.innerHeight}`],
-        ["Theme", "Black Metal [dark]"],
+        ["Name", profile.name],
         ["Role", profile.role],
-        ["Experience", `${profile.yearsOfExperience} years`],
-        ["Stack", "Laravel · Filament · Livewire · Alpine · Tailwind"],
         ["Location", profile.location],
+        ["Experience", `${profile.yearsOfExperience} years`],
+        ["Focus", "SQL · data modelling · dashboards · reporting"],
+        ["Stack", "Laravel · Filament · Livewire · PostgreSQL · MySQL"],
+        ["Session", mins < 1 ? "just started" : `${mins} min${mins > 1 ? "s" : ""}`],
       ];
       return (
-        <div className="flex flex-wrap gap-x-8 gap-y-2">
-          <pre className="text-accent">{SKULL}</pre>
-          <div className="pt-3">
-            <div>
-              <span className="font-bold text-accent">{profile.handle}</span>@<span className="font-bold text-accent">yassineos</span>
+        <div>
+          {rows.map(([k, v]) => (
+            <div key={k}>
+              <span className="inline-block w-24 text-accent">{k}</span>
+              {v}
             </div>
-            <div className="text-ash-500">-----------------</div>
-            {rows.map(([k, v]) => (
-              <div key={k}>
-                <span className="font-bold text-accent">{k}</span>: {v}
-              </div>
-            ))}
-            <div className="mt-2 flex">
-              {["#050505", "#3a0b0b", "#a01818", "#5c7840", "#c46220", "#7d7676", "#d9d1c1", "#efe8d8"].map((c) => (
-                <span key={c} className="h-4 w-6" style={{ background: c }} />
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       );
     },
@@ -148,12 +103,6 @@ const commands: Record<string, Command> = {
       const kids = node.children.filter((c) => all || !c.hidden);
       return (
         <div className="flex flex-wrap gap-x-6">
-          {all && (
-            <>
-              <span className="font-bold text-[#8aa6b8]">./</span>
-              <span className="font-bold text-[#8aa6b8]">../</span>
-            </>
-          )}
           {kids.map((c) => (
             <span key={c.name}>{nodeLabel(c)}</span>
           ))}
@@ -191,7 +140,7 @@ const commands: Record<string, Command> = {
     usage: "open <file|app>",
     run: (args, { cwd }) => {
       const arg = args[0];
-      if (!arg) return <Err>open: what shall I open? Try `open projects` or `open music`.</Err>;
+      if (!arg) return <Err>open: what shall I open? Try `open dashboard` or `open projects`.</Err>;
       if (arg in apps) {
         useWindows.getState().open(arg as AppId);
         return <Dim>Opening {apps[arg as AppId].title}…</Dim>;
@@ -201,13 +150,20 @@ const commands: Record<string, Command> = {
       return <Err>open: {arg}: No such file, folder or app. Apps: {Object.keys(apps).join(", ")}</Err>;
     },
   },
+  dashboard: {
+    desc: "Open the BI dashboard (sample data)",
+    run: () => {
+      useWindows.getState().open("dashboard");
+      return <Dim>Opening BI Dashboard… (illustrative sample data)</Dim>;
+    },
+  },
   projects: {
-    desc: "Things I've built",
+    desc: "Production projects",
     run: () => (
       <div className="space-y-2">
         {projectsData.map((p) => (
           <div key={p.slug}>
-            <span className="font-bold text-parchment">{p.title}</span> <Dim>[{p.type}]</Dim>
+            <span className="font-semibold text-parchment">{p.title}</span> <Dim>[{p.type}]</Dim>
             <div className="text-ash-300">{p.description}</div>
             <div className="text-accent/90">{p.tags.join(" · ")}</div>
           </div>
@@ -217,26 +173,54 @@ const commands: Record<string, Command> = {
     ),
   },
   experience: {
-    desc: "Where I've worked",
+    desc: "Work experience",
     run: () => (
       <div className="space-y-2">
         {experiencesData.map((e) => (
           <div key={e.slug}>
-            <span className="font-bold text-parchment">{e.title}</span> — {e.location} <Dim>({e.date})</Dim>
+            <span className="font-semibold text-parchment">{e.title}</span> — {e.company}, {e.location} <Dim>({e.date})</Dim>
           </div>
         ))}
         <Dim>More: `ls ~/experience`.</Dim>
       </div>
     ),
   },
+  education: {
+    desc: "Degrees and training",
+    run: () => (
+      <div className="space-y-2">
+        {educationData.map((e) => (
+          <div key={e.slug}>
+            <span className="font-semibold text-parchment">{e.title}</span>
+            <div className="text-ash-300">
+              {e.school} <Dim>({e.date})</Dim>
+            </div>
+          </div>
+        ))}
+      </div>
+    ),
+  },
   skills: {
-    desc: "My arsenal",
+    desc: "Technical skills",
     run: () => (
       <div>
         {Object.entries(skillsData).map(([group, items]) => (
           <div key={group}>
             <H>{group}</H>
             <div className="text-ash-300">{items.join(" · ")}</div>
+          </div>
+        ))}
+      </div>
+    ),
+  },
+  languages: {
+    desc: "Spoken languages",
+    run: () => (
+      <div>
+        {languagesData.map((l) => (
+          <div key={l.name}>
+            <span className="font-semibold text-parchment">{l.name}</span>: {l.level}
+            {"note" in l && <Dim> ({l.note})</Dim>}
           </div>
         ))}
       </div>
@@ -254,19 +238,19 @@ const commands: Record<string, Command> = {
             {s.name}: <A href={s.url}>{s.url}</A>
           </div>
         ))}
-        <Dim>Or type `mail` to send a raven.</Dim>
+        <Dim>Or type `mail` to send a message.</Dim>
       </div>
     ),
   },
   mail: {
-    desc: "Open the Mail app",
+    desc: "Open the contact form",
     run: () => {
       useWindows.getState().open("mail");
-      return <Dim>The raven awaits your message…</Dim>;
+      return <Dim>Opening contact form…</Dim>;
     },
   },
   cv: {
-    desc: "Open my résumé",
+    desc: "Open my CV",
     run: () => {
       openPath(`${HOME}/CV.pdf`);
       return (
@@ -276,47 +260,6 @@ const commands: Record<string, Command> = {
       );
     },
   },
-  play: {
-    desc: "Play music (optionally a track number)",
-    usage: "play [n]",
-    run: (args) => {
-      if (!playlist.length) return <Err>No tracks in the playlist.</Err>;
-      const n = args[0] ? Number(args[0]) - 1 : undefined;
-      if (n !== undefined && !(n >= 0 && n < playlist.length)) return <Err>play: track must be 1-{playlist.length}</Err>;
-      ensurePlayer();
-      useMusic.getState().play(n);
-      const t = playlist[n ?? useMusic.getState().index];
-      return (
-        <div>
-          ♫ Now playing: {t.artist} — {t.title}
-          <div className="text-ash-500">Streaming via Spotify — log in there for full tracks, otherwise you get 30s previews.</div>
-        </div>
-      );
-    },
-  },
-  pause: { desc: "Pause music", run: () => (useMusic.getState().pause(), "Silence.") },
-  next: { desc: "Next track", run: () => (ensurePlayer(), useMusic.getState().next(), np()) },
-  prev: { desc: "Previous track", run: () => (ensurePlayer(), useMusic.getState().prev(), np()) },
-  playlist: {
-    desc: "Show the playlist",
-    run: () => (
-      <div>
-        {sections.map((section) => (
-          <div key={section} className="mb-1">
-            <H>{section}</H>
-            {playlist.map((t, i) =>
-              t.section === section ? (
-                <div key={t.spotifyId}>
-                  <span className="text-accent">{String(i + 1).padStart(2)}</span> {t.artist} — {t.title} <Dim>({t.album})</Dim>
-                </div>
-              ) : null,
-            )}
-          </div>
-        ))}
-        <Dim>`play &lt;n&gt;` to play a track.</Dim>
-      </div>
-    ),
-  },
   wallpaper: {
     desc: "Change the wallpaper",
     usage: "wallpaper [name]",
@@ -324,7 +267,7 @@ const commands: Record<string, Command> = {
       const id = args[0] as WallpaperId;
       if (!id || !wallpapers.some((w) => w.id === id)) return <div>Usage: wallpaper [{wallpapers.map((w) => w.id).join("|")}]</div>;
       useSystem.getState().set({ wallpaper: id });
-      return <Dim>The scenery shifts…</Dim>;
+      return <Dim>Wallpaper set to {id}.</Dim>;
     },
   },
   echo: { desc: "Print text", usage: "echo <text>", run: (args) => args.join(" ") },
@@ -332,65 +275,7 @@ const commands: Record<string, Command> = {
   history: { desc: "Command history", run: (_, { history }) => <div>{history.map((h, i) => <div key={i}><Dim>{String(i + 1).padStart(3)}</Dim>  {h}</div>)}</div> },
   clear: { desc: "Clear the screen", run: (_, { clear }) => (clear(), null) },
   exit: { desc: "Close the terminal", run: (_, { exit }) => (exit(), null) },
-
-  // hidden
-  np: { desc: "", hidden: true, run: () => np() },
-  uname: { desc: "", hidden: true, run: (a) => (a.includes("-a") ? "YassineOS 6.6.6-doom #1 SMP PREEMPT_DARK x86_64 GNU/Linux" : "YassineOS") },
-  hostname: { desc: "", hidden: true, run: () => "yassineos" },
-  fortune: { desc: "", hidden: true, run: () => <span className="italic text-bone">“{fortunes[Math.floor(Math.random() * fortunes.length)]}”</span> },
-  summon: {
-    desc: "",
-    hidden: true,
-    run: () => {
-      useSystem.getState().set({ wallpaper: "void" });
-      if (playlist.length) {
-        ensurePlayer();
-        useMusic.getState().play();
-      }
-      return (
-        <div className="text-accent">
-          <pre>{String.raw`    )      )      )
-   (  )   (  )   (  )
-    ||     ||     ||
-   _||_   _||_   _||_`}</pre>
-          <div className="mt-1 italic">Something stirs in the fog…</div>
-        </div>
-      );
-    },
-  },
-  sudo: {
-    desc: "",
-    hidden: true,
-    run: (args) => {
-      if (args.join(" ").startsWith("rm -rf")) {
-        return (
-          <div>
-            <div className="text-[#d0584f]">removing /home/yassine/projects… removing /etc/hope… removing /usr/share/light…</div>
-            <div className="mt-1">Just kidding. Nothing burns here but the candles. 🕯️</div>
-          </div>
-        );
-      }
-      return `${profile.handle} is not in the sudoers file. This incident will be reported.`;
-    },
-  },
-  rm: { desc: "", hidden: true, run: () => <Err>rm: permission denied — this system is read-only, like a tombstone.</Err> },
-  matrix: { desc: "", hidden: true, run: () => <MatrixRain /> },
-  vim: { desc: "", hidden: true, run: () => "You entered vim. There is no escape. (just kidding — you never left the shell)" },
 };
-
-// The Spotify embed lives in the Music window, so playback needs it open.
-function ensurePlayer() {
-  const { windows, open, focus, activeId } = useWindows.getState();
-  if (windows.some((w) => w.appId === "music")) return;
-  open("music");
-  if (activeId) focus(activeId); // keep typing in the terminal
-}
-
-function np() {
-  const { index, playing } = useMusic.getState();
-  const t = playlist[index];
-  return t ? `${playing ? "♫" : "❚❚"} ${t.artist} — ${t.title}` : "Nothing playing.";
-}
 
 function tokenize(input: string) {
   return Array.from(input.matchAll(/"([^"]*)"|'([^']*)'|(\S+)/g), (m) => m[1] ?? m[2] ?? m[3]);
@@ -428,4 +313,3 @@ export function complete(input: string, cwd: string): { value?: string; options?
   }
   return matches.length ? { options: matches.map((m) => m.name + (m.type === "dir" ? "/" : "")) } : {};
 }
-

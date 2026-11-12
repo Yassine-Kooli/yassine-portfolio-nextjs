@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import clsx from "clsx";
 import { HOME, prettyPath } from "@/lib/fs";
 import { profile } from "@/lib/data";
-import { useSystem } from "@/store/system";
 import { useWindows } from "@/store/windows";
 import type { AppProps } from "@/os/app-view";
 import { complete, run } from "@/apps/terminal/commands";
@@ -15,16 +13,16 @@ const Prompt = ({ cwd }: { cwd: string }) => (
   <span className="shrink-0">
     <span className="font-bold text-accent">{profile.handle}@yassineos</span>
     <span className="text-ash-400">:</span>
-    <span className="font-bold text-[#8aa6b8]">{prettyPath(cwd)}</span>
+    <span className="font-bold text-[#8fa3bf]">{prettyPath(cwd)}</span>
     <span className="text-ash-400">$&nbsp;</span>
   </span>
 );
 
 const banner = (
   <div className="mb-2">
-    <div className="font-goth text-4xl leading-tight text-parchment">YassineOS</div>
+    <div className="text-sm font-semibold text-parchment">Terminal · {profile.name}</div>
     <div className="text-ash-400">
-      ysh 1.0 — type <span className="text-accent">help</span> to see what lurks here. Try <span className="text-accent">neofetch</span>.
+      Type <span className="text-accent">help</span> for commands. Try <span className="text-accent">open dashboard</span> or <span className="text-accent">experience</span>.
     </div>
   </div>
 );
@@ -32,7 +30,6 @@ const banner = (
 let lineId = 0;
 
 export default function Terminal({ windowId, active, props }: AppProps) {
-  const crt = useSystem((s) => s.crt);
   const [lines, setLines] = useState<Line[]>([{ id: ++lineId, node: banner }]);
   const [cwd, setCwd] = useState<string>(typeof props.path === "string" ? props.path : HOME);
   const [input, setInput] = useState("");
@@ -128,7 +125,7 @@ export default function Terminal({ windowId, active, props }: AppProps) {
   return (
     <div
       ref={scrollRef}
-      className={clsx("h-full overflow-y-auto bg-[#0a0909] p-3 font-mono text-[13px] leading-relaxed text-bone", crt && "crt")}
+      className="h-full overflow-y-auto bg-[#0b0d10] p-3 font-mono text-[13px] leading-relaxed text-bone"
       onMouseUp={() => !window.getSelection()?.toString() && inputRef.current?.focus({ preventScroll: true })}
     >
       {lines.map((l) => (

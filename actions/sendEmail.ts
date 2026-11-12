@@ -1,9 +1,8 @@
 "use server";
 
-import React from "react";
 import { Resend } from "resend";
 import { validateString, getErrorMessage } from "@/lib/utils";
-import ContactFormEmail from "@/email/contact-form-email";
+import { contactFormEmailHtml } from "@/email/contact-form-email";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -23,25 +22,22 @@ export const sendEmail = async (formData: FormData) => {
     };
   }
 
-  let data;
   try {
-    data = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>", // Change to "Contact Form <noreply@yourdomain.com>" when you add your domain
       to: "kooli.yassine0@gmail.com", // Your email address
       subject: "New message from your portfolio website",
-      reply_to: senderEmail as string,
-      react: React.createElement(ContactFormEmail, {
+      replyTo: senderEmail as string,
+      html: contactFormEmailHtml({
         message: message as string,
         senderEmail: senderEmail as string,
       }),
     });
+    if (error) return { error: error.message };
+    return { data };
   } catch (error: unknown) {
     return {
       error: getErrorMessage(error),
     };
   }
-
-  return {
-    data,
-  };
 };

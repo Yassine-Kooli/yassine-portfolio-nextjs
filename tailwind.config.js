@@ -9,26 +9,27 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        abyss: "#050505",
-        crypt: "#0d0c0c",
+        abyss: "#08090b",
+        crypt: "#0f1114",
         ash: {
-          900: "#141313",
-          800: "#1c1a1a",
-          700: "#2a2727",
-          600: "#3b3737",
-          500: "#5a5454",
-          400: "#7d7676",
-          300: "#a39b9b",
+          900: "#14161a",
+          800: "#1c1f24",
+          700: "#2a2e35",
+          600: "#3b4048",
+          500: "#5b6270",
+          400: "#7f8794",
+          300: "#a3aab5",
         },
-        bone: "#d9d1c1",
-        parchment: "#efe8d8",
+        bone: "#d6dae0",
+        parchment: "#f5f6f8",
         accent: "rgb(var(--accent) / <alpha-value>)",
       },
       fontFamily: {
-        goth: ["var(--font-goth)", "serif"],
-        display: ["var(--font-display)", "serif"],
-        ui: ["var(--font-ui)", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "monospace"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        // `display` and `ui` are kept as aliases so existing components keep working
+        display: ["var(--font-sans)", "system-ui", "sans-serif"],
+        ui: ["var(--font-sans)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       boxShadow: {
         window: "0 24px 60px -12px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.06)",

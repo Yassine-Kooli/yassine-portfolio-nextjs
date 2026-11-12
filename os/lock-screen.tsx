@@ -10,7 +10,6 @@ import Wallpaper from "@/os/wallpaper";
 export default function LockScreen() {
   const now = useClock();
   const wallpaper = useSystem((s) => s.wallpaper);
-  const fog = useSystem((s) => s.fog);
 
   const enter = () => {
     try {
@@ -34,7 +33,7 @@ export default function LockScreen() {
       autoFocus
     >
       <div className="absolute inset-0 scale-110 blur-md">
-        <Wallpaper id={wallpaper} fog={fog} />
+        <Wallpaper id={wallpaper} />
       </div>
       <div className="absolute inset-0 bg-black/45" />
       <div className="relative flex h-full flex-col items-center justify-between py-16 text-center">
@@ -42,7 +41,7 @@ export default function LockScreen() {
           <div className="font-display text-7xl font-semibold tracking-wider text-parchment sm:text-8xl">
             {now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })}
           </div>
-          <div className="mt-2 font-display text-lg tracking-[0.25em] text-ash-300">
+          <div className="mt-2 font-display text-lg tracking-[0.14em] text-ash-300">
             {now.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" }).toUpperCase()}
           </div>
         </div>
@@ -50,14 +49,14 @@ export default function LockScreen() {
           <div className="relative h-28 w-28 overflow-hidden rounded-full border-2 border-accent/70 shadow-[0_0_40px_rgb(var(--accent)/.35)]">
             <Image src={profile.avatar} alt={profile.name} fill sizes="112px" className="object-cover grayscale" priority />
           </div>
-          <div className="font-goth text-4xl text-parchment">{profile.name}</div>
+          <div className="font-display font-semibold tracking-tight text-4xl text-parchment">{profile.name}</div>
           <div className="text-sm text-ash-300">{profile.role}</div>
           <motion.div
             animate={{ opacity: [0.35, 1, 0.35] }}
             transition={{ duration: 2.4, repeat: Infinity }}
-            className="mt-6 font-display text-xs tracking-[0.35em] text-ash-300"
+            className="mt-6 font-display text-xs tracking-[0.18em] text-ash-300"
           >
-            CLICK TO DESCEND
+            CLICK TO CONTINUE
           </motion.div>
         </div>
       </div>

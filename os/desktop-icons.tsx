@@ -13,11 +13,11 @@ import AppIcon from "@/os/app-icon";
 type Item = { key: string; label: string; app?: AppId; icon?: IconType; open: () => void };
 
 const items: Item[] = [
-  { key: "about", label: "About Me", app: "about", open: () => useWindows.getState().open("about") },
+  { key: "about", label: "About", app: "about", open: () => useWindows.getState().open("about") },
+  { key: "dashboard", label: "BI Dashboard", app: "dashboard", open: () => useWindows.getState().open("dashboard") },
   { key: "projects", label: "Projects", icon: LuFolder, open: () => openPath(`${HOME}/projects`) },
   { key: "cv", label: "CV.pdf", icon: LuFileText, open: () => openPath(`${HOME}/CV.pdf`) },
   { key: "terminal", label: "Terminal", app: "terminal", open: () => useWindows.getState().open("terminal") },
-  { key: "music", label: "Music", app: "music", open: () => useWindows.getState().open("music") },
   { key: "mail", label: "Contact", app: "mail", open: () => useWindows.getState().open("mail") },
 ];
 

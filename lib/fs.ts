@@ -1,14 +1,13 @@
-import { experiencesData, profile, projectsData, skillsData } from "@/lib/data";
-import { playlist, sections } from "@/lib/playlist";
+import { educationData, experiencesData, languagesData, profile, projectsData, skillsData } from "@/lib/data";
+import { MONTHS, monthly, pipeline, productMix, regions } from "@/lib/sales-data";
 import type { AppId } from "@/lib/apps";
 
 export type FsFile = {
   type: "file";
   name: string;
-  kind: "text" | "pdf" | "audio" | "app";
+  kind: "text" | "pdf" | "app";
   content?: string;
   src?: string;
-  trackIndex?: number;
   appId?: AppId;
   hidden?: boolean;
 };
@@ -16,8 +15,6 @@ export type FsDir = { type: "dir"; name: string; children: FsNode[]; hidden?: bo
 export type FsNode = FsFile | FsDir;
 
 export const HOME = `/home/${profile.handle}`;
-
-const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 const projectFile = (p: (typeof projectsData)[number]): FsFile => ({
   type: "file",
@@ -42,8 +39,32 @@ const experienceFile = (e: (typeof experiencesData)[number]): FsFile => ({
   type: "file",
   kind: "text",
   name: `${e.slug}.md`,
-  content: [`# ${e.title}`, `> ${e.location} — ${e.date}`, "", e.description].join("\n"),
+  content: [`# ${e.title}`, `> ${e.company}, ${e.location} — ${e.date}`, "", ...e.highlights.map((h) => `- ${h}`)].join("\n"),
 });
+
+const educationFile = (e: (typeof educationData)[number]): FsFile => ({
+  type: "file",
+  kind: "text",
+  name: `${e.slug}.md`,
+  content: [`# ${e.title}`, `> ${e.school} — ${e.date}`].join("\n"),
+});
+
+/** The numbers behind the BI dashboard, as a CSV anyone can open (sample data). */
+const salesCsv = () =>
+  [
+    "# ILLUSTRATIVE SAMPLE DATA — not from any employer or client",
+    "month,revenue_usd_k,target_usd_k,orders",
+    ...MONTHS.map((m, i) => `${m},${monthly.revenue[i]},${monthly.target[i]},${monthly.orders[i]}`),
+    "",
+    "region,revenue_usd_k",
+    ...regions.map((r) => `${r.name},${r.revenue}`),
+    "",
+    "product,revenue_usd_k",
+    ...productMix.map((p) => `${p.name},${p.revenue}`),
+    "",
+    "stage,deals",
+    ...pipeline.map((p) => `${p.stage},${p.count}`),
+  ].join("\n");
 
 const root: FsDir = {
   type: "dir",
@@ -67,54 +88,43 @@ const root: FsDir = {
               type: "file",
               kind: "text",
               name: "skills.md",
-              content: [
-                "# Skills",
-                "",
-                ...Object.entries(skillsData).flatMap(([group, items]) => [`## ${group}`, items.join(" · "), ""]),
-              ].join("\n"),
+              content: ["# Skills", "", ...Object.entries(skillsData).flatMap(([group, items]) => [`## ${group}`, items.join(" · "), ""])].join("\n"),
+            },
+            {
+              type: "file",
+              kind: "text",
+              name: "languages.md",
+              content: ["# Languages", "", ...languagesData.map((l) => `- ${l.name}: ${l.level}${"note" in l ? ` (${l.note})` : ""}`)].join("\n"),
             },
             {
               type: "file",
               kind: "text",
               name: "contact.md",
-              content: [
-                "# Contact",
-                "",
-                `- Email: ${profile.email}`,
-                ...profile.socials.map((s) => `- ${s.name}: ${s.url}`),
-                "",
-                "Or open the Mail app and send a raven.",
-              ].join("\n"),
+              content: ["# Contact", "", `- Email: ${profile.email}`, ...profile.socials.map((s) => `- ${s.name}: ${s.url}`)].join("\n"),
             },
             { type: "file", kind: "pdf", name: "CV.pdf", src: profile.cv },
             { type: "dir", name: "projects", children: projectsData.map(projectFile) },
             { type: "dir", name: "experience", children: experiencesData.map(experienceFile) },
+            { type: "dir", name: "education", children: educationData.map(educationFile) },
             {
               type: "dir",
-              name: "music",
-              children: sections.map((section) => ({
-                type: "dir",
-                name: slug(section),
-                children: playlist.flatMap((t, i) =>
-                  t.section === section ? [{ type: "file", kind: "audio", name: `${slug(`${t.artist} ${t.title}`)}.spotify`, trackIndex: i } as FsFile] : [],
-                ),
-              })),
-            },
-            {
-              type: "file",
-              kind: "text",
-              name: ".grimoire",
-              hidden: true,
-              content: [
-                "# You found the grimoire",
-                "",
-                "Terminal incantations few mortals know:",
-                "",
-                "- `summon` — call something from the dark",
-                "- `fortune` — receive a bleak prophecy",
-                "- `sudo rm -rf /` — go on, try it",
-                "- `matrix` — wrong genre, but fine",
-              ].join("\n"),
+              name: "data",
+              children: [
+                { type: "file", kind: "text", name: "sales_sample.csv", content: salesCsv() },
+                {
+                  type: "file",
+                  kind: "text",
+                  name: "README.md",
+                  content: [
+                    "# Sample sales data",
+                    "",
+                    "The figures behind the BI Dashboard app. They are illustrative and were made up",
+                    "to demonstrate dashboard design. They are not from any employer or client.",
+                    "",
+                    "Open the BI Dashboard app to see the charts, or sales_sample.csv for the raw values.",
+                  ].join("\n"),
+                },
+              ],
             },
           ],
         },
@@ -128,7 +138,7 @@ const root: FsDir = {
           type: "file",
           kind: "text",
           name: "os-release",
-          content: 'NAME="YassineOS"\nVERSION="1.0 (Ghost)"\nID=yassineos\nPRETTY_NAME="YassineOS 1.0"\nHOME_URL="https://yassine-kooli.vercel.app/"',
+          content: 'NAME="YassineOS"\nVERSION="1.0"\nID=yassineos\nPRETTY_NAME="YassineOS 1.0"\nHOME_URL="https://yassine-kooli.vercel.app/"',
         },
       ],
     },

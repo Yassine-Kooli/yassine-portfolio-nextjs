@@ -16,13 +16,12 @@ import Window from "@/os/window";
 export default function Desktop() {
   const windows = useWindows((s) => s.windows);
   const wallpaper = useSystem((s) => s.wallpaper);
-  const fog = useSystem((s) => s.fog);
   const [menu, setMenu] = useState<{ x: number; y: number } | null>(null);
   const closeMenu = useCallback(() => setMenu(null), []);
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="absolute inset-0">
-      <Wallpaper id={wallpaper} fog={fog} />
+      <Wallpaper id={wallpaper} />
       <TopBar />
       <Dock />
       <div

@@ -4,15 +4,20 @@ import { persist, createJSONStorage } from "zustand/middleware";
 export const BOOTED_KEY = "yassineos-booted";
 
 export type Phase = "boot" | "login" | "desktop" | "off";
-export type WallpaperId = "forest" | "moon" | "fog" | "void";
-export type AccentId = "blood" | "bone" | "moss" | "ember";
+export type WallpaperId = "graphite" | "midnight" | "slate";
+export type AccentId = "indigo" | "teal" | "sky" | "slate";
 
 export const accents: Record<AccentId, { label: string; rgb: string }> = {
-  blood: { label: "Blood", rgb: "160 24 24" },
-  ember: { label: "Ember", rgb: "196 98 32" },
-  moss: { label: "Moss", rgb: "92 120 64" },
-  bone: { label: "Bone", rgb: "190 178 156" },
+  indigo: { label: "Indigo", rgb: "99 102 241" },
+  teal: { label: "Teal", rgb: "20 184 166" },
+  sky: { label: "Sky", rgb: "56 189 248" },
+  slate: { label: "Slate", rgb: "148 163 184" },
 };
+
+const DEFAULTS = { wallpaper: "graphite", accent: "indigo" } as const;
+
+// Bump when the persisted shape changes. Older saved settings are reset to the defaults above.
+const SETTINGS_VERSION = 3;
 
 export type Notification = { id: number; title: string; body?: string };
 
@@ -20,13 +25,10 @@ type SystemStore = {
   phase: Phase;
   wallpaper: WallpaperId;
   accent: AccentId;
-  grain: boolean;
-  fog: boolean;
-  crt: boolean;
   launcherOpen: boolean;
   notifications: Notification[];
   setPhase: (p: Phase) => void;
-  set: (patch: Partial<Pick<SystemStore, "wallpaper" | "accent" | "grain" | "fog" | "crt" | "launcherOpen">>) => void;
+  set: (patch: Partial<Pick<SystemStore, "wallpaper" | "accent" | "launcherOpen">>) => void;
   notify: (title: string, body?: string) => void;
   dismiss: (id: number) => void;
 };
@@ -37,11 +39,8 @@ export const useSystem = create<SystemStore>()(
   persist(
     (set) => ({
       phase: "boot",
-      wallpaper: "forest",
-      accent: "blood",
-      grain: true,
-      fog: true,
-      crt: true,
+      wallpaper: DEFAULTS.wallpaper,
+      accent: DEFAULTS.accent,
       launcherOpen: false,
       notifications: [],
       setPhase: (phase) => set({ phase }),
@@ -56,7 +55,14 @@ export const useSystem = create<SystemStore>()(
     {
       name: "yassineos-settings",
       storage: createJSONStorage(() => localStorage),
-      partialize: ({ wallpaper, accent, grain, fog, crt }) => ({ wallpaper, accent, grain, fog, crt }),
+      version: SETTINGS_VERSION,
+      migrate: (persisted, version) => {
+        // Older versions had the gothic wallpapers and the grain/fog/CRT toggles: reset them.
+        if (version < SETTINGS_VERSION) return { ...DEFAULTS };
+        const p = (persisted ?? {}) as Partial<SystemStore>;
+        return { wallpaper: p.wallpaper ?? DEFAULTS.wallpaper, accent: p.accent ?? DEFAULTS.accent };
+      },
+      partialize: ({ wallpaper, accent }) => ({ wallpaper, accent }),
     },
   ),
 );
